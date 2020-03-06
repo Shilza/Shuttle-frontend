@@ -1,0 +1,11 @@
+
+.container {
+  padding: 10px;
+  margin-bottom: 5px;
+  color: var(--text);
+}
+
+.filterName {
+  font-weight: 700;
+  margin-right: 5px;
+}

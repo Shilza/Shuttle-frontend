@@ -6,6 +6,6 @@ const PRODUCTION_SERVER = `https://${HOST}/`;
 
 export const CONFIG = {
   BASE_URL: PRODUCTION_SERVER,
-  WS_URL: `ws://${HOST}`
+  WS_URL: `wss://${HOST}`
 };
 

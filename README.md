@@ -1,6 +1,6 @@
 # Shuttle
 
-Social network ReactJS application
+Social network ReactJS application. Frontend
 
 ## Install & setup
 

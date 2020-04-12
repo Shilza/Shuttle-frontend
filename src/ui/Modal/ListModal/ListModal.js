@@ -6,7 +6,7 @@ import styles from './listModal.module.css';
 
 const ListModal = React.memo(({visible, title, children, withCloseButton, className, onClose}) => (
   <Modal visible={visible} onClose={onClose} withCloseButton={withCloseButton}>
-    <div className={`${styles.container} ${className}`}>
+    <div className={`${styles.container} ${className || ""}`}>
       {
         title &&
         <h1 className={styles.title}>

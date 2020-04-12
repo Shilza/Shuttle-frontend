@@ -2,8 +2,7 @@ import {saveTokensToLocalStorage} from "utils";
 import Http from '../Http';
 import {api} from './api';
 
-export const login = (data) =>
-  Http.post(`${api.auth}/login`, data);
+export const login = (data) => Http.post(`${api.auth}/login`, data);
 
 export const logout = () =>
   Http.post(`${api.auth}/logout`, {

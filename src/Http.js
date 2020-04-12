@@ -27,10 +27,10 @@ axiosInstance.interceptors.response.use(
 let isRefreshing = false;
 
 axiosInstance.interceptors.request.use(
-  async config => {
-    //before every request, we check the access token for validity
-    //if it is not valid we send a refresh token
-    //isRefreshing variable is needed to prevent recursion
+  async (config) => {
+    // before every request, we check the access token for validity
+    // if it is not valid we send a refresh token
+    // isRefreshing variable is needed to prevent recursion
     if (localStorage.hasOwnProperty('expiresIn') &&
       +localStorage.getItem('expiresIn') < +moment().format('X') &&
       !isRefreshing

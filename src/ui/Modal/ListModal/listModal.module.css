@@ -1,12 +1,24 @@
 
 .container {
   max-width: 700px;
-  min-width: 310px;
+  min-width: 300px;
   max-height: 95vh;
   border-radius: 15px;
   background: var(--primary);
   color: var(--text);
   box-shadow: 0 10px 20px rgba(0,0,0,0.19), 0 6px 6px rgba(0,0,0,0.23);
+}
+
+@media (max-width: 480px) {
+  .container {
+    width: calc(100vw - 20px);
+  }
+}
+
+@media (min-width: 480px) {
+  .container {
+    width: 420px;
+  }
 }
 
 .title {

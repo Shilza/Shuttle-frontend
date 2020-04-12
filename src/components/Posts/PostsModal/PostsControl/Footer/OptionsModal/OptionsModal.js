@@ -1,6 +1,6 @@
 import React, {useState} from "react";
 import PropTypes from 'prop-types';
-import {OptionsModal as OModal} from 'ui';
+import {OptionsModal as UiOptionsModal} from 'ui';
 import ModalBody from "./ModalBody";
 import OptionsButton from "./OptionsButton";
 
@@ -12,9 +12,9 @@ const OptionsModal = ({post}) => {
 
   return (
     <>
-      <OModal visible={isModalOpen} onClose={closeModal}>
+      <UiOptionsModal visible={isModalOpen} onClose={closeModal}>
         <ModalBody closeModal={closeModal} post={post}/>
-      </OModal>
+      </UiOptionsModal>
       <OptionsButton open={open}/>
     </>
   );

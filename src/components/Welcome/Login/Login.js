@@ -41,7 +41,7 @@ class Login extends React.Component {
           .then(() => history.push('/'))
           .catch(err => {
             this.setState({loading: false});
-            message.error(err.response.data.message);
+            message.error(err?.response?.data?.message || "Error has occurred");
           });
       }
     });

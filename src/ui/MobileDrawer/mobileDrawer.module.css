@@ -1,0 +1,11 @@
+
+.drawer {
+    border-radius: 12px 12px 0 0;
+    background-color: var(--primary);
+}
+
+.containerClassName {
+    padding: 10px;
+    height: calc(100vh - 110px);
+    overflow-y: auto;
+}

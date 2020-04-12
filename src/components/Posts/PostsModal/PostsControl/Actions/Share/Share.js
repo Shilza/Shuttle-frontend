@@ -24,7 +24,7 @@ const Share = React.memo(({src, className}) => {
   return (
     <>
       <IconButton
-        iconProps={{title: 'Share post', icon: planeIcon, className: styles.icon}}
+        iconProps={{title: 'Share', icon: planeIcon, className: styles.icon}}
         ariaLabel='Share post'
         title='Share post'
         className={`${styles.button} ${className}`} onClick={open}

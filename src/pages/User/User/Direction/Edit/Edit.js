@@ -1,13 +1,11 @@
 import React, {useCallback, useState} from "react";
 import PropTypes from "prop-types";
-import {Drawer} from 'react-pretty-drawer';
 import {connect} from "react-redux";
 import {compose} from "redux";
 import {Form, message} from "antd";
 
 import {isMobile} from "utils";
-import {Button} from 'ui';
-import {SimpleModal} from 'ui';
+import {Button, SimpleModal, MobileDrawer} from 'ui';
 import EditBody from "./EditBody/EditBody";
 
 import EditTitle from "./EditTitle/EditTitle";
@@ -56,18 +54,15 @@ const Edit = React.memo(({dispatch, history, form}) => {
     <>
       {
         isMobile() ?
-          <Drawer
+          <MobileDrawer
             visible={isEditVisible}
             onClose={closeDrawer}
-            className={styles.drawer}
-            placement='bottom'
-            height={'90%'}
           >
             <Form onSubmit={onSubmit}>
               <EditTitle onClose={closeDrawer} submit={onSubmit} isLoading={isLoading}/>
               <EditBody form={form}/>
             </Form>
-          </Drawer>
+          </MobileDrawer>
           : <SimpleModal
             title='Edit profile'
             className={styles.modal}

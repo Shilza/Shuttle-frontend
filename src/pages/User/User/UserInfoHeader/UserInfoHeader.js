@@ -11,13 +11,7 @@ const UserInfoHeader = ({user}) => (
     <Avatar avatar={user.avatar}/>
     <div className={styles.directionInfoContainer}>
       <Direction username={user.username}/>
-      <UserInfo
-        id={user.id}
-        postsCount={user.posts_count}
-        followsCount={user.follows_count}
-        followersCount={user.followers_count}
-        canSee={user.canSee}
-      />
+      <UserInfo/>
       <span>{user.bio}</span>
       <a href={user.site} target={'_blank'} rel={'noreferrer noopener'}>{user.site}</a>
     </div>
@@ -32,6 +26,7 @@ UserInfoHeader.propTypes = {
     posts_count: PropTypes.number.isRequired,
     follows_count: PropTypes.number.isRequired,
     followers_count: PropTypes.number.isRequired,
+    canSee: PropTypes.bool,
     bio: PropTypes.string,
     site: PropTypes.string
   })

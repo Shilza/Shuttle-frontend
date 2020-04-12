@@ -56,7 +56,7 @@ const Comment = ({comment, setCommentLiked, onRemove}) => {
               <time dateTime={created_at}>{moment(new Date(created_at), "YYYYMMDD").fromNow()}</time>
               {
                 !!likes_count &&
-                <span className={styles.likesCount} onClick={openList}>Likes count: {shortifyNumber(likes_count)}</span>
+                <span className={styles.likesCount} onClick={openList}>Likes: {shortifyNumber(likes_count)}</span>
               }
             </div>
           </div>

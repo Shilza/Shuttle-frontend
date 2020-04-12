@@ -11,6 +11,7 @@
   padding-left: 0;
   max-width: 310px;
   color: var(--text);
+  overflow: hidden;
 }
 
 .container > li:nth-child(n) {
@@ -19,6 +20,11 @@
   padding: 8px;
   list-style-type: none;
   cursor: pointer;
+}
+
+.container > li:hover {
+  transition: 80ms;
+  background-color: var(--accent-second);
 }
 
 .container > li:first-child {

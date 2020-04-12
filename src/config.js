@@ -1,11 +1,9 @@
 
 const HOST = "apishuttlemedia.herokuapp.com";
-const PRODUCTION_SERVER = `https://${HOST}/`;
-
-// const LOCALHOST = "0.0.0.0:3333";
+// const HOST = `${window.location.hostname}:3333`;
 
 export const CONFIG = {
-  BASE_URL: PRODUCTION_SERVER,
+  BASE_URL: `http://${HOST}/`,
   WS_URL: `wss://${HOST}`
 };
 

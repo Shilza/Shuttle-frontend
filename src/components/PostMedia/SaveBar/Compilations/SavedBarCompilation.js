@@ -5,6 +5,7 @@ import {connect} from "react-redux";
 import Compilation from "pages/User/User/NavigationPanel/Saved/Compilation";
 import styles from './savedBarCompilations.module.css';
 
+const spinnerIndicator = <Icon type="loading" style={{fontSize: 24}} spin/>;
 
 const SavedBarCompilation = ({compilation, dispatch, postId}) => {
 
@@ -24,9 +25,8 @@ const SavedBarCompilation = ({compilation, dispatch, postId}) => {
     setCompilationToSave(event, Object.keys(compilation)[0]);
   };
 
-  const icon = <Icon type="loading" style={{fontSize: 24}} spin/>;
   return (
-    <Spin spinning={loading} indicator={icon}>
+    <Spin spinning={loading} indicator={spinnerIndicator}>
       <div className={styles.compilation} onClick={onClickCompilation}>
         <Compilation compilation={compilation}/>
       </div>

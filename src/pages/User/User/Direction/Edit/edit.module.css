@@ -1,9 +1,4 @@
 
-.drawer {
-  border-radius: 12px 12px 0 0;
-  background-color: var(--primary);
-}
-
 .modal {
   min-width: 400px;
 }

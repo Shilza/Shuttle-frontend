@@ -2,78 +2,60 @@ import React, {useState} from "react";
 import PropTypes from 'prop-types';
 import {connect} from "react-redux";
 
-import {UsersService} from "services";
-import Paginator from "components/Paginator/Paginator";
-
-import Followers from "./Followers";
-import Follows from "./Follows";
+import {Followers} from "./Followers";
+import {Follows} from "./Follows";
 import PostsCount from "./PostsCount";
 import FollowersButton from "./FollowersButton";
 import FollowsButton from "./FollowsButton";
 
 import styles from './userInfo.module.css';
 
-const UserInfo = ({postsCount, canSee, followersCount, followsCount, id, dispatch}) => {
+const UserInfo = ({user}) => {
 
-  let [isFollowersModal, setIsFollowersModal] = useState(false);
-  let [isFollowsModal, setIsFollowsModal] = useState(false);
+    const {posts_count, followers_count, follows_count} = user;
 
-  const closeFollowersModal = () => setIsFollowersModal(false);
+    let [isFollowersModal, setIsFollowersModal] = useState(false);
+    let [isFollowsModal, setIsFollowsModal] = useState(false);
 
-  const closeFollowsModal = () => setIsFollowsModal(false);
+    const closeFollowersModal = () => setIsFollowersModal(false);
 
-  const openFollowsModal = () => setIsFollowsModal(true);
+    const closeFollowsModal = () => setIsFollowsModal(false);
 
-  const openFollowersModal = () => setIsFollowersModal(true);
+    const openFollowsModal = () => setIsFollowsModal(true);
 
-  const loadFollows = page => UsersService.getFollows(id, page)
-    .then(({data}) => {
-      dispatch.users.addFollows(data.data);
-      return data;
-    });
+    const openFollowersModal = () => setIsFollowersModal(true);
 
-  const loadFollowers = page => UsersService.getFollowers(id, page)
-    .then(({data}) => {
-      dispatch.users.addFollowers(data.data);
-      return data;
-    });
-
-  return (
-    <>
-      <ul className={styles.mainContainer}>
-        <PostsCount postsCount={postsCount}/>
-        <FollowersButton followersCount={followersCount} onClickFollowers={openFollowersModal}/>
-        <FollowsButton followsCount={followsCount} onClickFollows={openFollowsModal}/>
-      </ul>
-      {
-        (isFollowsModal && !!followsCount && canSee) &&
-        <Paginator
-          fetcher={loadFollows}
-          useWindow={false}
-        >
-          <Follows id={id} closeModal={closeFollowsModal}/>
-        </Paginator>
-      }
-      {
-        (isFollowersModal && !!followersCount && canSee) &&
-        <Paginator
-          fetcher={loadFollowers}
-          useWindow={false}
-        >
-          <Followers id={id} closeModal={closeFollowersModal}/>
-        </Paginator>
-      }
-    </>
-  );
+    return (
+        <>
+            <ul className={styles.mainContainer}>
+                <PostsCount postsCount={posts_count}/>
+                <FollowersButton followersCount={followers_count} onClickFollowers={openFollowersModal}/>
+                <FollowsButton followsCount={follows_count} onClickFollows={openFollowsModal}/>
+            </ul>
+            <Follows
+                isFollowsModal={isFollowsModal}
+                closeFollowsModal={closeFollowsModal}
+            />
+            <Followers
+                isFollowersModal={isFollowersModal}
+                closeFollowersModal={closeFollowersModal}
+            />
+        </>
+    );
 };
 
 UserInfo.propTypes = {
-  postsCount: PropTypes.number.isRequired,
-  canSee: PropTypes.bool.isRequired,
-  followersCount: PropTypes.number.isRequired,
-  followsCount: PropTypes.number.isRequired,
-  id: PropTypes.number.isRequired,
-  dispatch: PropTypes.func.isRequired
+    user: PropTypes.shape({
+        id: PropTypes.number.isRequired,
+        posts_count: PropTypes.number.isRequired,
+        follows_count: PropTypes.number.isRequired,
+        followers_count: PropTypes.number.isRequired,
+        canSee: PropTypes.bool,
+    })
 };
 
-export default connect()(UserInfo);
+const mapStateToProps = state => ({
+    user: state.users.user
+});
+
+export default connect(mapStateToProps)(UserInfo);

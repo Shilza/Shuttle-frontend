@@ -6,7 +6,7 @@ import transitions from './transitions.module.css';
 
 import styles from "./mark.module.css";
 
-const Mark = ({mark, parentWidth, link = false, text = 'Who is it?', ...props}) => {
+const Mark = ({isVisible, mark, parentWidth, link = false, text = 'Who is it?', ...props}) => {
 
   let markRef = useRef(null);
 
@@ -85,4 +85,4 @@ Mark.propTypes = {
   parentWidth: PropTypes.number.isRequired
 };
 
-export default Mark;
+export default React.memo(Mark);

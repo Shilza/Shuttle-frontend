@@ -6,9 +6,9 @@ import {compose} from "redux"
 import {withRouter} from "react-router"
 
 import DirectionActions from "./DirectionActions/DirectionActions";
-import FriendshipActions from "./FriendshipActions/FriendshipActions"
+import {FriendshipActions} from "./FriendshipActions"
 
-import styles from './direction.module.css';
+import s from './direction.module.css';
 
 const Direction = ({username, me, amBlacklisted, canSee, history}) => {
 
@@ -18,13 +18,13 @@ const Direction = ({username, me, amBlacklisted, canSee, history}) => {
 
   return (
     <>
-      <div className={styles.directionContainer}>
-        <span className={styles.username}>
+      <div className={s.directionContainer}>
+        <span className={s.username}>
           {username}
         </span>
         <DirectionActions me={me}/>
       </div>
-      <div className={styles.friendshipMessageContainer}>
+      <div className={s.friendshipMessageContainer}>
         {
           !amBlacklisted && !me &&
           <>

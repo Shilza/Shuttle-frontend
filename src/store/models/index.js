@@ -6,4 +6,4 @@ import {saved} from './saved';
 import {notifications} from './notifications';
 import {blacklist} from './blacklist';
 
-export {auth, users, posts, search, saved, notifications, blacklist};
+export const models = {auth, users, posts, search, saved, notifications, blacklist};

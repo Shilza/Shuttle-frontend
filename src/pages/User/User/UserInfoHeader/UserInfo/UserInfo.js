@@ -1,6 +1,7 @@
-import React, {useState} from "react";
+import React from "react";
 import PropTypes from 'prop-types';
 import {connect} from "react-redux";
+import {useModal} from 'hooks';
 
 import {Followers} from "./Followers";
 import {Follows} from "./Follows";
@@ -14,16 +15,17 @@ const UserInfo = ({user}) => {
 
     const {posts_count, followers_count, follows_count} = user;
 
-    let [isFollowersModal, setIsFollowersModal] = useState(false);
-    let [isFollowsModal, setIsFollowsModal] = useState(false);
+    const {
+        isOpen: isFollowersModalOpen,
+        openModal: openFollowersModal,
+        closeModal: closeFollowersModal,
+    } = useModal();
 
-    const closeFollowersModal = () => setIsFollowersModal(false);
-
-    const closeFollowsModal = () => setIsFollowsModal(false);
-
-    const openFollowsModal = () => setIsFollowsModal(true);
-
-    const openFollowersModal = () => setIsFollowersModal(true);
+    const {
+        isOpen: isFollowsModalOpen,
+        openModal: openFollowsModal,
+        closeModal: closeFollowsModal,
+    } = useModal();
 
     return (
         <>
@@ -33,11 +35,11 @@ const UserInfo = ({user}) => {
                 <FollowsButton followsCount={follows_count} onClickFollows={openFollowsModal}/>
             </ul>
             <Follows
-                isFollowsModal={isFollowsModal}
+                isFollowsModal={isFollowsModalOpen}
                 closeFollowsModal={closeFollowsModal}
             />
             <Followers
-                isFollowersModal={isFollowersModal}
+                isFollowersModal={isFollowersModalOpen}
                 closeFollowersModal={closeFollowersModal}
             />
         </>

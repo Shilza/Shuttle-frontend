@@ -25,7 +25,10 @@ const Body = ({src, myId, close, dispatch}) => {
     fetchDialogs();
   }, [fetchDialogs]);
 
-  const postCode = useMemo(() => src.split('/')[3].split('.')[0], [src]);
+  const postCode = useMemo(() => {
+    const srcSplitted = src.split('/');
+    return srcSplitted[srcSplitted.length - 1].split('.')[0]
+  }, [src]);
 
   const send = (id) => {
     const wsThread = ws.getSubscription(`dialogs:${myId}`);

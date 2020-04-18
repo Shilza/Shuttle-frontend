@@ -2,9 +2,9 @@ import React, {useRef, useState} from "react";
 import PropTypes from 'prop-types';
 
 import {convertImageToBlob} from "utils";
-import Header from "components/Posts/Header";
 import {IconButton} from 'ui';
-import Container from "components/Posts//Container";
+import Header from "components/Posts/Header";
+import Container from "components/Posts/Container";
 import Settings from "./Settings";
 import FilteredImage from "./FilteredImage";
 import Finish from "../Finish";

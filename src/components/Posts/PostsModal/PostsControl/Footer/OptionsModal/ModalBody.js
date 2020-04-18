@@ -12,6 +12,7 @@ import Edit from "./Edit";
 const ModalBody = ({post, my, closeModal, myMarkId}) => {
 
   const {id, archive} = post;
+  // TODO: починить ленте новостей
   const link = window.location.href;
 
   const removeMeFromMarks = useCallback(() => {

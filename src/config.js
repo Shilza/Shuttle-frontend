@@ -6,4 +6,3 @@ export const CONFIG = {
   BASE_URL: `https://${HOST}/`,
   WS_URL: `wss://${HOST}`
 };
-

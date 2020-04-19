@@ -53,7 +53,7 @@ const toLight = () => {
   rootStyle.setProperty('--btn-border-hover', '#40a9ff');
   rootStyle.setProperty('--btn-border-active', '#096dd9');
 
-  rootStyle.setProperty('--login-noise-background', 'url(http://api.thumbr.it/whitenoise-361x370.png?background=efefef&noise=626262&density=5&opacity=36');
+  rootStyle.setProperty('--login-noise-background', 'url(http://api.thumbr.it/whitenoise-361x370.png?background=efefef&noise=626262&density=5&opacity=5');
 };
 
 export const toDarkTheme = (async = true) => {

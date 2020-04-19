@@ -80,21 +80,6 @@
   margin-top: 10px;
 }
 
-.commentInputContainer {
-  display: flex;
-  align-items: center;
-  margin-right: 10px;
-  width: 100%;
-}
-
-.commentInput {
-  border: none;
-  width: 100%;
-  margin-right: 8px;
-  background-color: transparent;
-  outline: 0;
-}
-
 .commentsList {
   -ms-overflow-style: none;
   overflow-y: auto;
@@ -116,17 +101,4 @@
   .commentsList {
     max-height: 300px;
   }
-}
-
-.submitButton {
-  border: 0;
-  background-color: transparent;
-  padding: 0;
-  color: #1e90ff;
-  margin-top: 8px;
-  cursor: pointer;
-}
-
-.loader {
-  margin: 0;
 }

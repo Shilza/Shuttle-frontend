@@ -3,7 +3,7 @@ import {createPortal} from "react-dom";
 import CloseButton from "../CloseButton";
 import styles from "./window.module.css";
 
-const Window = ({children, zIndex, withCloseButton, onClose}) => {
+const Window = ({children, zIndex, withCloseButton, closeByClickOnCover, onClose}) => {
   const id = `f${(~~(Math.random() * 1e8)).toString(16)}`;
 
   useEffect(() => {
@@ -21,10 +21,12 @@ const Window = ({children, zIndex, withCloseButton, onClose}) => {
     };
   }, [onClose]);
 
-  const closeByCoverClick = event => {
-    const targetId = event.target.id;
-    if (targetId === `modalCover${id}` || targetId === `modalContent${id}`)
-      onClose();
+  const closeByCoverClick = (event) => {
+    if(closeByClickOnCover) {
+      const targetId = event.target.id;
+      if (targetId === `modalCover${id}` || targetId === `modalContent${id}`)
+        onClose();
+    }
   };
 
   return createPortal(

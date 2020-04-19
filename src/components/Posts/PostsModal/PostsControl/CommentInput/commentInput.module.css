@@ -1,0 +1,44 @@
+
+.container {
+    display: flex;
+    flex-direction: column;
+    width: 100%;
+}
+
+.commentInputContainer {
+    display: flex;
+    align-items: center;
+    margin-right: 10px;
+    width: 100%;
+}
+
+.commentInput {
+    border: none;
+    width: 100%;
+    margin-right: 8px;
+    background-color: transparent;
+    outline: 0;
+}
+
+.submitButton {
+    border: 0;
+    background-color: transparent;
+    padding: 0;
+    color: #1e90ff;
+    margin-top: 8px;
+    cursor: pointer;
+}
+
+.loader {
+    margin: 0;
+}
+
+.replyContainer {
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+    background-color: var(--accent);
+    margin-top: 5px;
+    padding: 4px 8px;
+    border-top: 1px solid var(--accent-second);
+}

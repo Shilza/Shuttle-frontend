@@ -3,7 +3,7 @@ import PropTypes from 'prop-types';
 import {connect} from "react-redux";
 
 import {Button} from 'ui';
-import withLoader from "components/Loader/Loader";
+import withLoader from "components/Loader";
 import PostsList from "components/Posts/PostsList/PostsList";
 import Paginator from "components/Paginator/Paginator";
 import {PostsService} from 'services';

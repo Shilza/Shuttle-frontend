@@ -2,7 +2,7 @@ import React from "react";
 import {isMobile} from "is-mobile";
 
 import {UsersService} from "services";
-import Paginator from "components/Paginator/Paginator";
+import Paginator from "components/Paginator";
 import Body from "./Body";
 import {ListModal, MobileDrawer} from "ui";
 import PropTypes from "prop-types";

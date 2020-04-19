@@ -6,9 +6,9 @@ import Avatar from "react-avatar-edit";
 import {connect} from "react-redux";
 import styles from './avatar.module.css';
 
-const AvatarUploader = ({onClose, media, dispatch}) => {
+const cropButtonStyle = {width: '100%'};
 
-  const buttonStyle = {width: '100%'};
+const AvatarUploader = ({onClose, media, dispatch}) => {
 
   let [cropRes, setCropRes] = useState();
 
@@ -20,11 +20,11 @@ const AvatarUploader = ({onClose, media, dispatch}) => {
         let avatar = new FormData();
         avatar.append('avatar', file);
         dispatch.users.updateAvatarAsync(avatar)
-          .then(data => {
+          .then((data) => {
             message.success(data.message);
           })
-          .catch(err => {
-            message.error(err.response.data.message);
+          .catch((err) => {
+            message.error(err?.response?.data?.message || "Something went wrong");
           })
           .finally(onClose);
       });
@@ -35,13 +35,11 @@ const AvatarUploader = ({onClose, media, dispatch}) => {
       <Avatar
         width={390}
         height={295}
-        onCrop={data => {
-          setCropRes(data)
-        }}
+        onCrop={setCropRes}
         onClose={onClose}
         src={media}
       />
-      <Button style={buttonStyle} onClick={uploadAvatar}>Ok</Button>
+      <Button style={cropButtonStyle} onClick={uploadAvatar}>Crop</Button>
     </div>
   )
 };

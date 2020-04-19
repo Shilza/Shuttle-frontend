@@ -41,7 +41,7 @@ class Login extends React.Component {
           .then(() => history.push('/'))
           .catch(err => {
             this.setState({loading: false});
-            message.error(err?.response?.data?.message || "Error has occurred");
+            message.error(err?.response?.data?.message || "Something went wrong");
           });
       }
     });
@@ -84,7 +84,6 @@ class Login extends React.Component {
     );
   }
 }
-
 
 export default compose(
   Form.create(),

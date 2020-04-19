@@ -1,28 +1,14 @@
-import React, {useCallback, useEffect, useState} from "react";
+import React, {useCallback} from "react";
 import {connect} from 'react-redux';
 import Paginator from "components/Paginator/Paginator";
 import FeedExplainingLabel from "components/ExplainingLabels/FeedLabel/FeedLabel";
-import FeedList from "./FeedList";
-
-import styles from './feed.module.css';
 import Loader from "components/Paginator/Loader";
+import FeedList from "./FeedList";
+import styles from './feed.module.css';
 
 const Feed = ({posts, dispatch}) => {
 
-  const [firstLoading, setFirstLoading] = useState(false);
-
-  const fetcher = useCallback((page) => {
-    return dispatch.posts.fetchFeed(page)
-      .then((data) => {
-        if (!firstLoading)
-          setFirstLoading(true);
-        return data;
-      })
-  }, [dispatch.posts, firstLoading]);
-
-  useEffect(() => {
-    dispatch.posts.resetFeed();
-  }, [dispatch.posts]);
+  const fetcher = useCallback((page) => dispatch.posts.fetchFeed(page), [dispatch.posts]);
 
   return (
     <div className={styles.container}>
@@ -31,10 +17,10 @@ const Feed = ({posts, dispatch}) => {
           <FeedList posts={posts}/>
         </Paginator>
         {
-          posts && posts.length === 0 && firstLoading &&
+          posts?.length === 0 &&
           <FeedExplainingLabel/>
         }
-        {!firstLoading && <Loader/>}
+        {!posts && <Loader/>}
       </div>
     </div>
   );

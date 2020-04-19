@@ -24,7 +24,7 @@ const Search = ({dispatch, isSearchFocused}) => {
 
   const onChangeSearch = event => {
     setBarIsVisible(true);
-    dispatch.search.setIsSearchFocused(true);
+    dispatch.searchUi.setIsSearchFocused(true);
 
     const username = event.target.value;
     if (username.length > 0)
@@ -44,11 +44,11 @@ const Search = ({dispatch, isSearchFocused}) => {
 
   const closeSearchInput = () => {
     searchRef.current.value = '';
-    dispatch.search.setIsSearchFocused(false);
+    dispatch.searchUi.setIsSearchFocused(false);
   };
 
   const openSearchInput = () => {
-    dispatch.search.setIsSearchFocused(true);
+    dispatch.searchUi.setIsSearchFocused(true);
   };
 
   const closeBar = () => {
@@ -85,5 +85,5 @@ Search.propTypes = {
 };
 
 export default connect((state) => ({
-  isSearchFocused: state.search.isSearchFocused
+  isSearchFocused: state.searchUi.isSearchFocused
 }))(Search);

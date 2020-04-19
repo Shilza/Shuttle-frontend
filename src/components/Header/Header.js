@@ -5,7 +5,7 @@ import {connect} from "react-redux";
 
 import {IconButton} from "ui";
 import {isMobile} from "utils";
-import logoIcon from 'images/logo.png';
+import logoIcon from 'images/nLogo.png';
 import planeIcon from 'images/plane.svg';
 
 import Search from "./Search";

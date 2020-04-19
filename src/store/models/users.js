@@ -30,7 +30,6 @@ export const users = {
       };
     },
     decrementsPostsCount(state) {
-
       const user = {...state.user};
       user.posts_count--;
 
@@ -40,7 +39,6 @@ export const users = {
       }
     },
     incrementsPostsCount(state) {
-
       const user = {...state.user};
       user.posts_count++;
 
@@ -90,18 +88,34 @@ export const users = {
       };
     },
 
-    unfollow(state, {id, canSee}) {
+    unfollow(state) {
       let user = {...state.user};
 
       if (user.friendshipState !== 1)
-        user.follows_count--;
+        user.followers_count--;
 
       user.friendshipState = 0;
+
+      return {
+        ...state,
+        user
+      };
+    },
+
+    changeSeeState(state, canSee) {
+      let user = {...state.user};
+
       user.canSee = canSee;
 
       return {
         ...state,
-        user,
+        user
+      };
+    },
+
+    removeFromFollows(state, id) {
+      return {
+        ...state,
         follows: state.follows.filter(user => user.id !== id)
       };
     },
@@ -189,12 +203,14 @@ export const users = {
       return data;
     },
     async followAsync(data) {
-      await FriendshipsService.follow(data);
       dispatch.users.follow();
+      await FriendshipsService.follow(data);
     },
     async unfollowAsync(data) {
+      dispatch.users.removeFromFollows(data.id);
+      dispatch.users.unfollow();
       const receivedData = await FriendshipsService.unfollow(data);
-      dispatch.users.unfollow({id: data.id, canSee: receivedData.data.canSee});
+      dispatch.users.changeSeeState(receivedData.data.canSee);
     },
     async setPrivateAsync() {
       const {data} = await UsersService.setPrivate();
@@ -212,12 +228,12 @@ export const users = {
       return data;
     },
     async deleteAvatarAsync() {
-      await UsersService.deleteAvatar();
       dispatch.users.deleteAvatar();
+      await UsersService.deleteAvatar();
     },
     async removeFollowerAsync(id) {
-      await FriendshipsService.removeFollower(id);
       dispatch.users.removeFollower(id);
+      await FriendshipsService.removeFollower(id);
     }
   })
 };

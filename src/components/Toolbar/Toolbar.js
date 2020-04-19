@@ -18,7 +18,7 @@ const Toolbar = ({notificationsCount, dispatch}) => {
   let notificationsStyle = {color: getTextColor()};
 
   const openSearch = () => {
-    dispatch.search.setIsSearchFocused(true);
+    dispatch.searchUi.setIsSearchFocused(true);
   };
 
   const scrollToTop = () => {

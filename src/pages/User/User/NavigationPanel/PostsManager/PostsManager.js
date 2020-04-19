@@ -11,7 +11,7 @@ const PostsManager = ({id, posts, dispatch}) => {
 
   useEffect(() => {
     return () => {
-      dispatch.posts.resetUsers();
+      dispatch.posts.resetUser();
     }
   }, [id, dispatch.posts]);
 

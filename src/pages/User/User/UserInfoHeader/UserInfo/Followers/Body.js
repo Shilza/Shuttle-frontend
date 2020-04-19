@@ -1,7 +1,6 @@
 import React, {useCallback} from "react";
 import PropTypes from 'prop-types';
 import {connect} from "react-redux";
-import {message} from 'antd';
 
 import {searchFollowers} from "services/user";
 import UserFriendshipCard from "../UserFriendshipCard";
@@ -22,10 +21,7 @@ const Body = ({closeModal, me, id, followers, dispatch}) => {
     };
 
     const onRemove = useCallback((id) => {
-        dispatch.users.removeFollowerAsync(id)
-            .catch((err) => {
-                message.error(err.response.data.message);
-            });
+        dispatch.users.removeFollowerAsync(id);
     }, [dispatch.users]);
 
     return (

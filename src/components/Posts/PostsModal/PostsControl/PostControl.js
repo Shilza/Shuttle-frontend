@@ -20,9 +20,9 @@ const PostControl = ({post}) => {
   let scrollParent = useRef(null);
   const {comments, fetchComments, onComment, onCommentRemove, setCommentLiked} = useComments(id);
 
-  let style;
+  let sectionContainerStyle;
   if(post.src.match('.mp4'))
-    style = {width: 'auto'};
+    sectionContainerStyle = {width: 'auto'};
 
   const getScrollParent = (ref) => {
     scrollParent.current = ref.current;
@@ -34,7 +34,7 @@ const PostControl = ({post}) => {
   };
 
   return (
-    <section className={styles.postControl} style={style}>
+    <section className={styles.postControl} style={sectionContainerStyle}>
       <Header username={owner} avatar={avatar} location={location}/>
       <Caption username={owner} caption={caption} className={styles.caption}/>
       <TopPagination

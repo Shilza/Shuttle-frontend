@@ -25,7 +25,6 @@ const User = ({me, canSee, isPrivate, amBlacklisted}) => (
 
 const Public = ({me}) => (
   <>
-    {/*<StoriesList/>*/}
     {
       (me && !isMobile()) && <PostsUploader/>
     }

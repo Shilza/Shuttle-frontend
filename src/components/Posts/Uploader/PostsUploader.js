@@ -38,7 +38,7 @@ const PostsUploader = ({dispatch, trigger}) => {
                         <UploadPost media={media} upload={upload}/>
                     </MobileDrawer>
                     :
-                    <Modal visible={isModalOpen} onClose={closeModal} withCloseButton>
+                    <Modal visible={isModalOpen} onClose={closeModal} closeByClickOnCover={false} withCloseButton>
                         <UploadPost media={media} upload={upload}/>
                     </Modal>
             }

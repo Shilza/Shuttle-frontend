@@ -4,7 +4,7 @@ import {FeedService} from 'services';
 
 const initialState = {
   user: [],
-  feed: [],
+  feed: null,
   liked: [],
   marked: [],
   saved: [],
@@ -30,7 +30,7 @@ export const posts = {
       return {...state, user: [...state.user, ...transformMetadata(posts)]};
     },
     addFeed(state, posts) {
-      return {...state, feed: [...state.feed, ...transformMetadata(posts)]};
+      return {...state, feed: state.feed?.concat(transformMetadata(posts)) || transformMetadata(posts)}
     },
     addMarked(state, posts) {
       return {...state, marked: [...state.marked, ...transformMetadata(posts)]};
@@ -50,12 +50,12 @@ export const posts = {
     update(state, updatedPost) {
       const update = post => post.id === updatedPost.id ? transformMetadata([updatedPost])[0] : post;
 
-      return forKeys(initialState, (key) => state[key].map(update));
+      return forKeys(initialState, (key) => state[key]?.map(update));
     },
     remove(state, id) {
       const remove = post => post.id !== id;
 
-      return forKeys(initialState, (key) => state[key].filter(remove));
+      return forKeys(initialState, (key) => state[key]?.filter(remove));
     },
     like(state, id) {
       const setLiked = post => {
@@ -67,7 +67,7 @@ export const posts = {
         return post;
       };
 
-      return forKeys(initialState, (key) => state[key].map(setLiked));
+      return forKeys(initialState, (key) => state[key]?.map(setLiked));
     },
     unLike(state, id) {
       const setLikedToFalse = post => {
@@ -79,7 +79,7 @@ export const posts = {
         return post;
       };
 
-      return forKeys(initialState, (key) => state[key].map(setLikedToFalse));
+      return forKeys(initialState, (key) => state[key]?.map(setLikedToFalse));
     },
     removeSaved(state, id) {
       const setSavedToFalse = post => {
@@ -90,7 +90,7 @@ export const posts = {
         return post;
       };
 
-      return forKeys(initialState, (key) => state[key].map(setSavedToFalse));
+      return forKeys(initialState, (key) => state[key]?.map(setSavedToFalse));
     },
     save(state, id) {
       const setSaved = post => {
@@ -101,7 +101,7 @@ export const posts = {
         return post;
       };
 
-      return forKeys(initialState, (key) => state[key].map(setSaved));
+      return forKeys(initialState, (key) => state[key]?.map(setSaved));
     },
     addToArchive(state, id) {
       const setArchived = post => post.id !== id;
@@ -110,7 +110,7 @@ export const posts = {
 
       return forKeys(initialState, (key) => {
         if (key !== 'postByCode')
-          return state[key].filter(setArchived);
+          return state[key]?.filter(setArchived);
         return state[key];
       });
     },
@@ -120,7 +120,7 @@ export const posts = {
         state.postByCode = [{...state.postByCode, isArchived: false}];
       return {...state, archived: state.archived.filter(setNotArchived)}
     },
-    resetUsers(state) {
+    resetUser(state) {
       return {...state, user: []};
     },
     resetMarked(state) {
@@ -128,9 +128,6 @@ export const posts = {
     },
     resetSaved(state) {
       return {...state, saved: []};
-    },
-    resetFeed(state) {
-      return {...state, feed: []};
     },
     reset() {
       return initialState;

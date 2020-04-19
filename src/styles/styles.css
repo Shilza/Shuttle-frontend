@@ -43,5 +43,5 @@
   --btn-border-active: #096dd9;
   --btn-text-hover-color: #40a9ff;
 
-  --login-noise-background: url('http://api.thumbr.it/whitenoise-361x370.png?background=efefef&noise=626262&density=5&opacity=36');
+  --login-noise-background: url('http://api.thumbr.it/whitenoise-361x370.png?background=efefef&noise=626262&density=5&opacity=10');
 }

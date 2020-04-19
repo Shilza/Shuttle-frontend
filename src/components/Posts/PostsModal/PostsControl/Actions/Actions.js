@@ -1,16 +1,19 @@
 import React, {useCallback, useState} from "react";
 import PropTypes from 'prop-types';
 import {connect} from 'react-redux';
-import moment from "moment";
+import dayjs from 'dayjs';
+import relativeTime from 'dayjs/plugin/relativeTime';
+
+import {shortifyNumber} from "utils";
 
 import Save from "./Save";
 import Share from "./Share";
 import Like from "./Like";
 import LikesListModal from "./Like/LikesListModal";
-import {shortifyNumber} from "utils";
 
+import s from './actions.module.css';
 
-import styles from './actions.module.css';
+dayjs.extend(relativeTime);
 
 const Actions = ({post, dispatch, className}) => {
 
@@ -34,19 +37,19 @@ const Actions = ({post, dispatch, className}) => {
 
   return (
     <>
-      <div className={`${styles.actionsContainer} ${className}`}>
-        <div className={styles.actions}>
-          <div className={styles.likeContainer}>
+      <div className={`${s.actionsContainer} ${className}`}>
+        <div className={s.actions}>
+          <div className={s.likeContainer}>
             {
               !!likes_count &&
-              <span onClick={openList} className={styles.likesCount}>{shortifyNumber(likes_count)}</span>
+              <span onClick={openList} className={s.likesCount}>{shortifyNumber(likes_count)}</span>
             }
             <Like type='post' id={id} isLiked={isLiked} onLike={onLike}/>
           </div>
           <Share src={post.src}/>
           <Save post={post}/>
         </div>
-        <time dateTime={created_at}>{moment(new Date(created_at), "YYYYMMDD").fromNow()}</time>
+        <time dateTime={created_at}>{dayjs(created_at).fromNow()}</time>
       </div>
       <LikesListModal isVisible={isListOpen} onClose={closeList} type={'post'} id={id}/>
     </>

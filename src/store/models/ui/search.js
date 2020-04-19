@@ -2,7 +2,7 @@ const initialState = {
   isSearchFocused: false
 };
 
-export const search = {
+export const searchUi = {
   state: initialState,
   reducers: {
     setIsSearchFocused(state, isSearchFocused) {

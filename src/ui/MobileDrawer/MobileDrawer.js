@@ -1,6 +1,6 @@
 import React from "react";
-import {Drawer} from "react-pretty-drawer";
 import PropTypes from "prop-types";
+import {Drawer} from "react-pretty-drawer";
 import {Title} from "./Title";
 import s from "./mobileDrawer.module.css";
 

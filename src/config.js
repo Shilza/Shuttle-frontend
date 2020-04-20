@@ -3,6 +3,6 @@
 const HOST = `${window.location.hostname}:3333`;
 
 export const CONFIG = {
-  BASE_URL: `http://${HOST}/`,
+  BASE_URL: `https://${HOST}/`,
   WS_URL: `wss://${HOST}`
 };

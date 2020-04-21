@@ -39,7 +39,7 @@ const AvatarUploader = ({onClose, media, dispatch}) => {
         onClose={onClose}
         src={media}
       />
-      <Button style={cropButtonStyle} onClick={uploadAvatar}>Crop</Button>
+      <Button style={cropButtonStyle} onClick={uploadAvatar}>Update</Button>
     </div>
   )
 };

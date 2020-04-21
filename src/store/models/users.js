@@ -225,6 +225,7 @@ export const users = {
     async updateAvatarAsync(avatar) {
       const {data} = await UsersService.updateAvatar(avatar);
       dispatch.users.updateAvatar(data.avatar);
+      dispatch.auth.updateAvatar(data.avatar);
       return data;
     },
     async deleteAvatarAsync() {

@@ -129,6 +129,15 @@ export const posts = {
     resetSaved(state) {
       return {...state, saved: []};
     },
+    resetArchived(state) {
+      return {...state, archived: []};
+    },
+    resetLiked(state) {
+      return {...state, liked: []};
+    },
+    resetFeed(state) {
+      return {...state, feed: null};
+    },
     reset() {
       return initialState;
     }

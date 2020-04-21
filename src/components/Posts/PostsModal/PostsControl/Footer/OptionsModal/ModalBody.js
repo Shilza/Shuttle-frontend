@@ -12,8 +12,7 @@ import Edit from "./Edit";
 const ModalBody = ({post, my, closeModal, myMarkId}) => {
 
   const {id, archive} = post;
-  // TODO: починить ленте новостей
-  const link = window.location.href;
+  const link = window.location.origin + '/p/' + post?.src?.match(/(?!.*\/.*).+(?=\.)/)[0];
 
   const removeMeFromMarks = useCallback(() => {
     MarksService.remove(myMarkId).then(({data}) => {

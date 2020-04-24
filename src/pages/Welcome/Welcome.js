@@ -8,7 +8,7 @@ import styles from './welcome.module.css';
 
 const Welcome = ({children = <Login/>}) => (
   <div className={styles.welcome}>
-    <PostCards/>
+    {/*<PostCards/>*/}
     <div className={styles.nLogoContainer}>
       <img src={nLogo} className={styles.nLogo} alt='logo'/>
       <h1 className={styles.nTitle}>Shuttle</h1>

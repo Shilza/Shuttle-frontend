@@ -4,5 +4,5 @@ const HOST = "apishuttlemedia.herokuapp.com";
 
 export const CONFIG = {
   BASE_URL: `https://${HOST}/`,
-  WS_URL: `ws://${HOST}`
+  WS_URL: `wss://${HOST}`
 };

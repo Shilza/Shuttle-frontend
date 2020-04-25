@@ -8,48 +8,50 @@ import Notification from "./Notification";
 import styles from './notifications.module.css';
 
 
-const NotificationsList = ({notificationsCount, dispatch, notifications}) => {
+const NotificationsList = ({dispatch, subscriptionsCount, notificationsCount, notifications}) => {
 
-  const [firstLoading, setFirstLoading] = useState(false);
+    const [firstLoading, setFirstLoading] = useState(false);
 
-  const fetchNotifications = useCallback((page) =>
-    dispatch.notifications.get(page).then(data => {
-      if (!firstLoading)
-        setFirstLoading(true);
-      return data;
-    }), [dispatch.notifications, firstLoading]);
+    const fetchNotifications = useCallback((page) => {
+        return dispatch.notifications.get(page).then(data => {
+            if (!firstLoading)
+                setFirstLoading(true);
+            return data;
+        })
+    }, [dispatch.notifications]); // eslint-disable-line
 
-  return (
-    <>
-      <div className={notifications.length > 0 ? styles.notificationsList : ''}>
-        {
-          notifications.length > 0 && <span className={styles.title}>Notifications</span>
-        }
-        {
-          <BlanksList count={notificationsCount}/>
-        }
-        <Paginator fetcher={fetchNotifications}>
-          {
-            !!notifications && notifications.map((item, index) =>
-              <Notification key={index} item={item}/>
-            )
-          }
-        </Paginator>
-      </div>
-      {firstLoading && notifications.length === 0 && <NotificationsExplainingLabel/>}
-    </>
-  );
+    return (
+        <>
+            <div className={notifications.length > 0 ? styles.notificationsList : ''}>
+                {
+                    notifications.length > 0 && <span className={styles.title}>Notifications</span>
+                }
+                {
+                    notificationsCount > 0 && <BlanksList/>
+                }
+                <Paginator fetcher={fetchNotifications}>
+                    {
+                        !!notifications && notifications.map((item, index) =>
+                            <Notification key={index} item={item}/>
+                        )
+                    }
+                </Paginator>
+            </div>
+            {firstLoading && notifications.length === 0 && subscriptionsCount === 0 && <NotificationsExplainingLabel/>}
+        </>
+    );
 };
 
 NotificationsList.propTypes = {
-  notificationsCount: PropTypes.number.isRequired,
-  dispatch: PropTypes.func.isRequired,
-  notifications: PropTypes.array,
+    dispatch: PropTypes.func.isRequired,
+    notifications: PropTypes.array,
+    subscriptionsCount: PropTypes.number,
+    notificationsCount: PropTypes.number,
 };
 
 const mapStateToProps = state => ({
-  notificationsCount: state.auth.user.notificationsCount,
-  notifications: state.notifications
+    notifications: state.notifications,
+    notificationsCount: state.auth.user.notificationsCount
 });
 
 export default connect(mapStateToProps)(NotificationsList);

@@ -4,7 +4,7 @@ import NotificationBlank from "./NotificationBlank";
 import transitions from './transitions.module.css';
 import ReactCSSTransitionGroup from 'react-addons-css-transition-group';
 
-const BlanksList = ({count}) => {
+const BlanksList = ({count = 10}) => {
     const getNotificationsBlanks = () => {
         const notificationsBlanks = [];
 
@@ -28,7 +28,7 @@ const BlanksList = ({count}) => {
 };
 
 BlanksList.propTypes = {
-    count: PropTypes.number.isRequired
+    count: PropTypes.number
 };
 
 export default React.memo(BlanksList);

@@ -1,4 +1,4 @@
-import React from "react";
+import React, {useCallback} from "react";
 import {isMobile} from "is-mobile";
 
 import {UsersService} from "services";
@@ -12,11 +12,13 @@ const Followers = ({isFollowersModal, closeFollowersModal, dispatch, user}) => {
 
     const {id, followers_count, canSee} = user;
 
-    const loadFollowers = page => UsersService.getFollowers(id, page)
-        .then(({data}) => {
-            dispatch.users.addFollowers(data.data);
-            return data;
-        });
+    const loadFollowers = useCallback((page) => {
+        return UsersService.getFollowers(id, page)
+            .then(({data}) => {
+                dispatch.users.addFollowers(data.data);
+                return data;
+            })
+    }, [id, dispatch.users]);
 
     return (
         <>

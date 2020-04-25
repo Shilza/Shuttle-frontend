@@ -1,20 +1,11 @@
-import React, {useEffect, useState} from "react";
-import {SubscriptionRequestsService} from "services";
+import React, {useState} from "react";
+import PropTypes from 'prop-types';
 import SubRequestList from "./SubRequestsList";
 import SubscriptionRequestsLabel from "./SubscriptionRequestsLabel";
 
-const SubscriptionRequests = () => {
+const SubscriptionRequests = React.memo(({subscriptionsCount, mainAvatar}) => {
 
   let [isListOpen, setIsListOpen] = useState(false);
-  let [avatar, setAvatar] = useState(undefined);
-  let [count, setCount] = useState(0);
-
-  useEffect(() => {
-    SubscriptionRequestsService.getSubsRequestsPreview().then(({data: {avatar, count}}) => {
-      setAvatar(avatar);
-      setCount(count);
-    });
-  }, []);
 
   const openList = () => setIsListOpen(true);
 
@@ -24,13 +15,18 @@ const SubscriptionRequests = () => {
         isListOpen
           ? <SubRequestList/>
           : <SubscriptionRequestsLabel
-            count={count}
-            avatar={avatar}
+            count={subscriptionsCount}
+            avatar={mainAvatar}
             openList={openList}
           />
       }
     </>
   );
+});
+
+SubscriptionRequests.propTypes = {
+  subscriptionsCount: PropTypes.number,
+  mainAvatar: PropTypes.string
 };
 
 export default SubscriptionRequests;

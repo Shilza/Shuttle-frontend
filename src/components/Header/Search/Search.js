@@ -62,6 +62,7 @@ const Search = ({dispatch, isSearchFocused}) => {
         searchRef={searchRef}
         onBlur={closeSearchInput}
         onFocus={openSearchInput}
+        isPlaceholderVisible={isSearchFocused}
       />
       {
         isBarVisible &&

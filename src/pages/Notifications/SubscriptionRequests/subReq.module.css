@@ -1,12 +1,18 @@
 
 .subReqLabel {
   display: flex;
-  margin: 0 14px 14px 0;
+  margin-bottom: 14px;
   padding: 14px;
   background: var(--primary);
   border-radius: 6px;
   border: 1px solid var(--accent);
-  max-width: 350px;
+  cursor: pointer;
+}
+
+@media (max-width: 768px) {
+  .subReqLabel {
+    margin: 0 14px 14px 14px;
+  }
 }
 
 .avatar {

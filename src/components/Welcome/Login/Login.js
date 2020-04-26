@@ -13,80 +13,82 @@ import styles from './login.module.css';
 
 class Login extends React.Component {
 
-  constructor(props) {
-    super(props);
+    constructor(props) {
+        super(props);
 
-    this.state = {
-      loading: false,
-      remember: true
-    };
+        this.state = {
+            loading: false,
+            remember: true
+        };
 
-    this.handleSubmit = this.handleSubmit.bind(this);
-    this.changeRemember = this.changeRemember.bind(this);
-  }
+        this.handleSubmit = this.handleSubmit.bind(this);
+        this.changeRemember = this.changeRemember.bind(this);
+    }
 
-  changeRemember() {
-    this.setState((prevState) => ({remember: !prevState.remember}));
-  }
+    changeRemember() {
+        this.setState((prevState) => ({remember: !prevState.remember}));
+    }
 
-  handleSubmit(e) {
-    e.preventDefault();
-    const {form, dispatch, history} = this.props;
-    const {remember} = this.state;
+    handleSubmit(e) {
+        e.preventDefault();
+        const {form, dispatch, history} = this.props;
+        const {remember} = this.state;
 
-    form.validateFields((err, {username, password}) => {
-      if (!err) {
-        this.setState({loading: true});
-        dispatch.auth.loginAsync({username, password, remember})
-          .then(() => history.push('/'))
-          .catch(err => {
-            this.setState({loading: false});
-            message.error(err?.response?.data?.message || "Something went wrong");
-          });
-      }
-    });
-  }
+        form.validateFields((err, {username, password}) => {
+            if (!err) {
+                this.setState({loading: true});
+                dispatch.auth.loginAsync({username, password, remember})
+                    .then(() => history.push('/'))
+                    .catch(err => {
+                        this.setState({loading: false});
+                        message.error(err?.response?.data?.message || "Something went wrong");
+                    });
+            }
+        });
+    }
 
-  render() {
-    const {getFieldDecorator} = this.props.form;
-    const antIcon = <Icon type="loading" style={{fontSize: 24}} spin/>;
-    const {remember} = this.state;
+    render() {
+        const {getFieldDecorator} = this.props.form;
+        const antIcon = <Icon type="loading" style={{fontSize: 24}} spin/>;
+        const {remember} = this.state;
 
-    return (
-      <Spin spinning={this.state.loading} indicator={antIcon}>
-        <h1 className={styles.title}>Login</h1>
-        <Form onSubmit={this.handleSubmit}>
-          <Username getFieldDecorator={getFieldDecorator}/>
-          <Password
-            getFieldDecorator={getFieldDecorator}
-            validator={this.validateToNextPassword}
-          />
-          <FormItem>
-            <div className={styles.rememberForgotContainer}>
-              <Remember getFieldDecorator={getFieldDecorator}
-                        remember={remember}
-                        onChange={this.changeRemember}
-              />
-              <Link to={'/password-reset'}>Forgot password</Link>
-            </div>
-            <div className={styles.loginRegisterContainer}>
-              <Button className={styles.login}
-                      type="primary"
-                      htmlType="submit"
-              >
-                Log in
-              </Button>
-              <Link to={'/register'}>Register now!</Link>
-            </div>
-          </FormItem>
-        </Form>
-      </Spin>
-    );
-  }
+        return (
+            <Spin spinning={this.state.loading} indicator={antIcon}>
+                <h1 className={styles.title}>Login</h1>
+                <Form onSubmit={this.handleSubmit}>
+                    <Username getFieldDecorator={getFieldDecorator}/>
+                    <Password
+                        getFieldDecorator={getFieldDecorator}
+                        validator={this.validateToNextPassword}
+                    />
+                    <FormItem>
+                        <div className={styles.rememberForgotContainer}>
+                            <Remember getFieldDecorator={getFieldDecorator}
+                                      remember={remember}
+                                      onChange={this.changeRemember}
+                            />
+                            <Link to={'/password-reset'}>Forgot password</Link>
+                        </div>
+                        <div className={styles.loginRegisterContainer}>
+                            <Button
+                                className={styles.login}
+                                type="primary"
+                                htmlType="submit"
+                                data-testid='submit_button'
+                            >
+                                Log in
+                            </Button>
+                            <Link to={'/register'}>Register now!</Link>
+                        </div>
+                    </FormItem>
+                </Form>
+            </Spin>
+        );
+    }
 }
 
 export default compose(
-  Form.create(),
-  connect(),
-  withRouter
+    Form.create(),
+    connect(),
+    withRouter
 )(Login);

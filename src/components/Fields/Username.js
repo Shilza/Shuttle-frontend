@@ -22,6 +22,7 @@ export const Username = ({getFieldDecorator, fieldName = 'username', initialValu
                     prefix={<Icon type="user" style={{color: 'rgba(0,0,0,.25)'}}/>}
                     placeholder="Username"
                     autoComplete='off'
+                    data-testid='input_username'
                 />
             )}
         </FormItem>

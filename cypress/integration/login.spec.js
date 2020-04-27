@@ -1,32 +1,63 @@
+describe('Authentication', () => {
 
-describe('Cypress', () => {
     beforeEach(() => {
         cy.visit('/');
     });
 
-    describe('Authentication test', () => {
-        it('should authenticate right user', () => {
-            // cy.clearCookies()
+    it('should display "User does not exists"', () => {
+        cy.getByDataTestId('input_username').type('testtest');
+        cy.getByDataTestId('input_password').type('123123123');
+        cy.getByDataTestId('submit_button').click();
 
-            cy.get('[data-testid="input_username"]').type('test');
-            cy.get('[data-testid="input_password"]').type('123123123');
-            cy.get('[data-testid="submit_button"]').click();
+        cy.get('.ant-message-error').should('be.visible');
+        cy.get('.ant-message-error').find('span').contains('User does not exists');
 
-            // cy.url().should('include', '/feed')
+        expect(localStorage.getItem('accessToken')).to.be.null;
+        expect(localStorage.getItem('refreshToken')).to.be.null;
+        expect(localStorage.getItem('expiresIn')).to.be.null;
+        cy.wait(1000);
+    });
 
-            // cy.getCookie('token').should('not.be.null')
-        })
+    it('should display "Incorrect login or password"', () => {
+        cy.getByDataTestId('input_username').type('test');
+        cy.getByDataTestId('input_password').type('wrongpass');
+        cy.getByDataTestId('submit_button').click();
 
-        // it('should not authenticate wrong user', () => {
-        //     cy.clearCookies()
-        //
-        //     cy.visit('/')
-        //     cy.get('#login').type('existed_user')
-        //     cy.get('#password').type('wrong_password')
-        //     cy.get('button[type=submit]').click()
-        //
-        //     cy.url().should('not.include', '/feed')
-        //     cy.getCookie('token').should('be.null')
-        // })
-    })
+        cy.get('.ant-message-error').should('be.visible');
+        cy.get('.ant-message-error').find('span').contains('Incorrect login or password');
+
+        expect(localStorage.getItem('accessToken')).to.be.null;
+        expect(localStorage.getItem('refreshToken')).to.be.null;
+        expect(localStorage.getItem('expiresIn')).to.be.null;
+        cy.wait(1000);
+    });
+
+    it('should authenticate right user without Remember', () => {
+        cy.getByDataTestId('input_username').type('test');
+        cy.getByDataTestId('input_password').type('123123123');
+        cy.getByDataTestId('checkbox_remember_me').click();
+        cy.getByDataTestId('submit_button').click();
+
+        cy.wait(3000).then(() => {
+            cy.getByDataTestId('feed').should('be.visible');
+
+            expect(localStorage.getItem('accessToken')).to.be.null;
+            expect(localStorage.getItem('refreshToken')).to.be.null;
+            expect(localStorage.getItem('expiresIn')).to.be.null;
+        });
+    });
+
+    it('should authenticate right user', () => {
+        cy.getByDataTestId('input_username').type('test');
+        cy.getByDataTestId('input_password').type('123123123');
+        cy.getByDataTestId('submit_button').click();
+
+        cy.wait(3000).then(() => {
+            cy.getByDataTestId('feed').should('be.visible');
+
+            expect(localStorage.getItem('accessToken')).not.to.be.null;
+            expect(localStorage.getItem('refreshToken')).not.to.be.null;
+            expect(localStorage.getItem('expiresIn')).not.to.be.null;
+        });
+    });
 });

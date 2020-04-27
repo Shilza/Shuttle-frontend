@@ -50,7 +50,8 @@
     "storybook": "start-storybook",
     "cy:open": "cypress open",
     "cy:run": "cypress run",
-    "e2e": "start-server-and-test dev:test http://localhost:3000 cy:open"
+    "e2e:open": "start-server-and-test dev:test http://localhost:3000 cy:open",
+    "e2e:run": "start-server-and-test dev:test http://localhost:3000 cy:run"
   },
   "eslintConfig": {
     "extends": "react-app"

@@ -17,7 +17,7 @@ const Feed = ({posts, dispatch}) => {
     const fetcher = useCallback((page) => dispatch.posts.fetchFeed(page), [dispatch.posts]);
 
     return (
-        <div className={styles.container}>
+        <div className={styles.container} data-testid='feed'>
             <div className={styles.list}>
                 <Paginator fetcher={fetcher}>
                     <FeedList posts={posts}/>

@@ -1,7 +1,9 @@
 import React from "react";
 import PropTypes from 'prop-types';
-import { Icon, Input } from "antd";
+import {Icon, Input} from "antd";
 import FormItem from "antd/es/form/FormItem";
+
+const inputStyles = {color: 'rgba(0,0,0,.25)'};
 
 const Confirm = ({getFieldDecorator, validator, onBlur}) => {
     return (
@@ -13,8 +15,13 @@ const Confirm = ({getFieldDecorator, validator, onBlur}) => {
                     {validator}
                 ]
             })(
-                <Input prefix={<Icon type="eye" style={{color: 'rgba(0,0,0,.25)'}}/>}
-                       type="password" placeholder="Confirm password" onBlur={onBlur}/>
+                <Input
+                    data-testid='input_password_confirmation'
+                    type="password"
+                    placeholder="Confirm password"
+                    prefix={<Icon type="eye" style={inputStyles}/>}
+                    onBlur={onBlur}
+                />
             )}
         </FormItem>
     );

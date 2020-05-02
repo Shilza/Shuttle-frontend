@@ -1,0 +1,25 @@
+
+.bookmark {
+    color: rgb(100, 100, 100);
+    position: absolute;
+    width: 18px;
+    height: 24px;
+    border-radius: 1px 1px 0 0;
+    border-top: solid 2px currentColor;
+    border-left: solid 2px currentColor;
+    border-right: solid 2px currentColor;
+    transition: all 0.4s ease;
+}
+
+.bookmark:before {
+    content: '';
+    position: absolute;
+    top: 16px;
+    left: 1px;
+    width: 12px;
+    height: 12px;
+    border-top: solid 2px currentColor;
+    border-left: solid 2px currentColor;
+    -webkit-transform: rotate(45deg);
+    transform: rotate(45deg);
+}

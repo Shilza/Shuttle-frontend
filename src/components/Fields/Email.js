@@ -3,6 +3,8 @@ import PropTypes from 'prop-types';
 import { Input, Icon } from 'antd';
 import FormItem from "antd/es/form/FormItem";
 
+const inputStyles = {color: 'rgba(0,0,0,.25)'};
+
 const Email = ({getFieldDecorator, initialValue=''}) => {
     return (
         <FormItem>
@@ -13,7 +15,11 @@ const Email = ({getFieldDecorator, initialValue=''}) => {
                 ],
                 initialValue
             })(
-                <Input prefix={<Icon type="mail" style={{color: 'rgba(0,0,0,.25)'}}/>} placeholder="Email"/>
+                <Input
+                    data-testid='input_email'
+                    placeholder="Email"
+                    prefix={<Icon type="mail" style={inputStyles}/>}
+                />
             )}
         </FormItem>
     );

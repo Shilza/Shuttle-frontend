@@ -1,7 +1,8 @@
 import React, {useCallback, useState} from "react";
 import PropTypes from 'prop-types';
 import {Link} from "react-router-dom";
-import moment from "moment";
+import dayjs from 'dayjs';
+import relativeTime from "dayjs/plugin/relativeTime";
 
 import CLinkify from "components/CLinkify";
 import Like from "components/Posts/PostsModal/PostsControl/Actions/Like";
@@ -11,7 +12,10 @@ import {shortifyNumber} from "utils";
 import {useModal} from "hooks";
 import CommentsModal from "./Modal/CommentsModal";
 
-import styles from './comment.module.css';
+import s from './comment.module.css';
+
+dayjs.extend(relativeTime);
+
 
 const Comment = ({comment, setCommentLiked, onRemove}) => {
 
@@ -35,26 +39,26 @@ const Comment = ({comment, setCommentLiked, onRemove}) => {
 
     return (
         <>
-            <div className={styles.comment} onClick={openModal}>
-                <div className={styles.infoAvatarContainer}>
+            <div className={s.comment} onClick={openModal}>
+                <div className={s.infoAvatarContainer}>
                     <Link to={'/' + owner} onClick={e => e.stopPropagation()}>
                         {
                             avatar
-                                ? <img src={avatar} alt={`${owner} avatar`} className={styles.avatar}/>
-                                : <DefaultAvatar fontSize={'16px'} className={styles.avatar}/>
+                                ? <img src={avatar} alt={`${owner} avatar`} className={s.avatar}/>
+                                : <DefaultAvatar fontSize={'16px'} className={s.avatar}/>
                         }
                     </Link>
-                    <div className={styles.container}>
+                    <div className={s.container}>
                         <div>
                             <Link to={'/' + owner} onClick={e => e.stopPropagation()}
-                                  className={styles.username}>{owner}</Link>
-                            <CLinkify className={styles.text}>{text}</CLinkify>
+                                  className={s.username}>{owner}</Link>
+                            <CLinkify className={s.text}>{text}</CLinkify>
                         </div>
-                        <div className={styles.metaContainer}>
-                            <time dateTime={created_at}>{moment(new Date(created_at), "YYYYMMDD").fromNow()}</time>
+                        <div className={s.metaContainer}>
+                            <time dateTime={created_at}>{dayjs(created_at).fromNow()}</time>
                             {
                                 !!likes_count &&
-                                <span className={styles.likesCount}
+                                <span className={s.likesCount}
                                       onClick={openList}>Likes: {shortifyNumber(likes_count)}</span>
                             }
                         </div>
@@ -64,7 +68,7 @@ const Comment = ({comment, setCommentLiked, onRemove}) => {
                         id={id}
                         isLiked={isLiked}
                         onLike={setCommentLiked}
-                        className={styles.like}
+                        className={s.like}
                     />
                 </div>
             </div>

@@ -1,22 +1,20 @@
-import styles from "../search.module.css";
 import React from "react";
+import s from "./searchInput.module.css";
 
-const SearchInput = ({search, onBlur, onFocus, isPlaceholderVisible, searchRef}) => (
-  <div className={styles.search}>
-    <div className={styles.searchBox}>
-      <input
-        type='text'
-        placeholder={isPlaceholderVisible && 'Search'}
-        aria-label='Global search by users'
-        onChange={search}
-        ref={searchRef}
-        onBlur={onBlur}
-        onFocus={onFocus}
-        maxLength={12}
-      />
-      <span/>
+const SearchInput = ({search, onBlur, onFocus, searchRef}) => (
+    <div className={s.searchBox}>
+        <input
+            type='text'
+            placeholder='Search'
+            aria-label='Global search by users'
+            onChange={search}
+            ref={searchRef}
+            onBlur={onBlur}
+            onFocus={onFocus}
+            maxLength={12}
+        />
+        <span></span>
     </div>
-  </div>
 );
 
 export default SearchInput;

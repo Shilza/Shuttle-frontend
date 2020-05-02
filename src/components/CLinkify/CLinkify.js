@@ -4,7 +4,7 @@ import {Link} from "react-router-dom";
 import Linkify from 'linkifyjs/react';
 
 
-const nicknameToLink = text => {
+const nicknameToLink = (text) => {
   const regex = /^@[A-Za-z0-9]+$/;
   const createLink = (word, index) => regex.test(word) ? <Link key={index} to={`/${word.slice(1)}`}>{word}</Link> : word;
   const addSpaces = (acc, e) => [...acc, ' ', e];

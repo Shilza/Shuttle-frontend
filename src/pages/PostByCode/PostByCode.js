@@ -1,26 +1,28 @@
-import React, {useEffect, useState} from "react";
+import React, {useEffect} from "react";
 import PropTypes from 'prop-types';
 import {connect} from "react-redux";
 
 import {isMobile} from "utils";
+import {useAsync} from "hooks";
 import PostModalBody from "components/Posts/PostsModal/PostModalBody";
+import Loader from "components/Paginator/Loader";
 
 import styles from './postByCode.module.css';
 
 const PostByCode = ({dispatch, match, currentPost}) => {
-
-  const [error, setError] = useState('');
+  const {execute, isLoading, error, wasFetched} = useAsync(dispatch.posts.getPostByCode, false);
 
   useEffect(() => {
-    dispatch.posts.getPostByCode(match.params.code)
-      .catch((err) => setError(err.response.data.message));
-  }, [dispatch.posts, match.params.code]);
+    if (!wasFetched)
+      execute(match.params.code);
+  }, [execute, wasFetched, match]);
 
   return (
     <div className={isMobile() ? styles.mobileContainer : styles.container}>
+      {isLoading && <Loader center/>}
       {
         error
-          ? <div>{error}</div>
+          ? <div>{error?.response?.data?.message}</div>
           : currentPost && <PostModalBody post={currentPost} needReplaceLocation={false}/>
       }
     </div>

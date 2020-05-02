@@ -50,7 +50,7 @@ class Register extends React.Component {
             }
           )
           .catch(err => {
-            message.error(err.response.data.message);
+            message.error(err?.response?.data?.message || "Something went wrong");
           })
           .finally(() => {
             this.setState({loading: false});

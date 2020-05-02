@@ -7,7 +7,7 @@ import {Badge, Icon} from "antd";
 import SettingsMenu from "pages/User/User/Direction/Settings/SettingsMenu";
 import PostsUploader from "../Posts/Uploader";
 
-import styles from './toolbar.module.css';
+import s from './toolbar.module.css';
 
 const currentLocationColor = '#1890ff';
 
@@ -35,18 +35,18 @@ const Toolbar = ({notificationsCount, dispatch}) => {
     notificationsStyle.color = currentLocationColor;
 
   return (
-    <nav className={styles.toolbar}>
+    <nav className={s.toolbar}>
       <Link to={'/'} style={feedStyle} onClick={scrollToTop}>
-        <Icon type={'fire'} title='News'/>
+        <Icon type={'fire'} title='News' className={s.icon}/>
       </Link>
-      <Icon type={'search'} title='Search' className={styles.icon} onClick={openSearch}/>
-      <PostsUploader trigger={<Icon type={'plus'} title='Create post' className={styles.icon}/>}/>
+      <Icon type={'search'} title='Search' className={s.icon} onClick={openSearch}/>
+      <PostsUploader trigger={<Icon type={'plus'} title='Create post' className={s.icon}/>}/>
       <Link to={'/account/notifications'} style={notificationsStyle}>
         <Badge dot={notificationsCount !== 0}>
-          <Icon type="bell" title='Notifications'/>
+          <Icon type="bell" title='Notifications' className={s.icon} />
         </Badge>
       </Link>
-      <SettingsMenu trigger={<Icon type={'align-right'} title='Menu' className={styles.icon}/>}/>
+      <SettingsMenu trigger={<Icon type={'align-right'} title='Menu' className={s.icon}/>}/>
     </nav>
   );
 };

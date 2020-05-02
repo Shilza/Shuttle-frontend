@@ -16,7 +16,7 @@ const SavedBarCompilationsList = ({dispatch, compilations}) => {
             {
                 compilations && (
                     compilations.length === 0
-                        ? <SavedExplainingLabel text={'Here will displayed your photos compilations'}/>
+                        ? <SavedExplainingLabel text='Here will displayed your posts compilations'/>
                         :
                         <div className={s.compilationsList}>
                             {

@@ -7,7 +7,7 @@ import EmojiPicker from "./EmojiPicker";
 import emojiIcon from './icons/smile.svg';
 import styles from './footer.module.css';
 
-
+const emojiIconProps = {icon: emojiIcon, title: 'Emoji'};
 
 const Footer = React.memo(({sendMessage, typing}) => {
   let inputRef = useRef(null);
@@ -75,7 +75,7 @@ const Footer = React.memo(({sendMessage, typing}) => {
               title='Emoji'
               className={styles.emojiIcon}
               onClick={toggleEmoji}
-              iconProps={{icon: emojiIcon, title: 'Emoji'}}
+              iconProps={emojiIconProps}
             />
           }
         </div>

@@ -3,12 +3,12 @@ import PropTypes from 'prop-types';
 import {connect} from "react-redux";
 import Paginator from "components/Paginator/Paginator";
 import NotificationsExplainingLabel from "components/ExplainingLabels/NotificationsLabel/NotificationsExplainingLabel";
-import BlanksList from "./BlanksList";
+import NotificationsShimmer from "./NotificationsShimmer";
 import Notification from "./Notification";
 import styles from './notifications.module.css';
 
 
-const NotificationsList = ({dispatch, subscriptionsCount, notificationsCount, notifications}) => {
+const NotificationsList = ({dispatch, subscriptionsCount, notifications}) => {
 
     const [firstLoading, setFirstLoading] = useState(false);
 
@@ -27,7 +27,7 @@ const NotificationsList = ({dispatch, subscriptionsCount, notificationsCount, no
                     notifications.length > 0 && <span className={styles.title}>Notifications</span>
                 }
                 {
-                    notificationsCount > 0 && <BlanksList/>
+                    !firstLoading && <NotificationsShimmer/>
                 }
                 <Paginator fetcher={fetchNotifications}>
                     {
@@ -50,8 +50,7 @@ NotificationsList.propTypes = {
 };
 
 const mapStateToProps = state => ({
-    notifications: state.notifications,
-    notificationsCount: state.auth.user.notificationsCount
+    notifications: state.notifications
 });
 
 export default connect(mapStateToProps)(NotificationsList);

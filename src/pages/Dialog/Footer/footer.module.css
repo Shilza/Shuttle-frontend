@@ -9,7 +9,7 @@
 }
 
 .messageInput {
-  padding: 5px 38px 5px 8px;
+  padding: 5px 38px 5px 12px;
   border: 1px solid var(--accent);
   background-color: transparent;
   color: var(--text);
@@ -28,6 +28,7 @@
   background: transparent;
   color: rgba(32, 142, 255, 0.9);
   font-weight: bold;
+  cursor: pointer;
 }
 
 .loader {

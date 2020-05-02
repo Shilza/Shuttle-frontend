@@ -4,7 +4,7 @@ import NotificationBlank from "./NotificationBlank";
 import transitions from './transitions.module.css';
 import ReactCSSTransitionGroup from 'react-addons-css-transition-group';
 
-const BlanksList = ({count = 10}) => {
+const NotificationsShimmer = ({count = 10}) => {
     const getNotificationsBlanks = () => {
         const notificationsBlanks = [];
 
@@ -27,8 +27,8 @@ const BlanksList = ({count = 10}) => {
     );
 };
 
-BlanksList.propTypes = {
+NotificationsShimmer.propTypes = {
     count: PropTypes.number
 };
 
-export default React.memo(BlanksList);
+export default React.memo(NotificationsShimmer);

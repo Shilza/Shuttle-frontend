@@ -15,7 +15,7 @@ import ws, {types as WsTypes} from "../../Ws"
 
 import useMessages from "./utils/useMessages"
 
-import styles from './dialog.module.css'
+import s from './dialog.module.css'
 
 
 const Dialog = ({myId, dispatch, match}) => {
@@ -135,13 +135,13 @@ const Dialog = ({myId, dispatch, match}) => {
   };
 
   return (
-    <div className={styles.container}>
+    <div className={s.container}>
       {
         dialogUser ?
           <>
             {
               dialogUser && dialogUser.amBlacklisted ?
-                <div className={styles.explainingContainer}>
+                <div className={s.explainingContainer}>
                   <BlacklistedExplainingLabel/>
                 </div>
                 :

@@ -2,11 +2,13 @@ import React, {useCallback, useState} from "react";
 import PropTypes from 'prop-types';
 import {Icon} from "antd";
 
+import {shortifyNumber} from "utils";
+
 import Media from "./Media";
 import PostsModal from "../../PostsModal";
 
 import cameraIcon from './icons/camera.svg';
-import styles from './postPreview.module.css';
+import s from './postPreview.module.css';
 
 
 const PostPreview = React.memo(({post}) => {
@@ -22,20 +24,20 @@ const PostPreview = React.memo(({post}) => {
 
   return (
     <>
-      <div className={styles.container} onClick={openModal}>
+      <div className={s.container} onClick={openModal}>
         <Media src={post.src}/>
-        <div className={styles.metaInfo}>
+        <div className={s.metaInfo}>
           <div>
-            {post.likes_count}
-            <Icon className={styles.icon} type='heart'/>
+            {shortifyNumber(post.likes_count)}
+            <Icon className={s.icon} type='heart'/>
           </div>
           <div>
-            {post.comments_count}
-            <Icon className={styles.icon} type='message'/>
+            {shortifyNumber(post.comments_count)}
+            <Icon className={s.icon} type='message'/>
           </div>
         </div>
         {post.src.match('.mp4') &&
-        <picture className={styles.videoCamera}><img src={cameraIcon} alt={'Video'}/></picture>}
+        <picture className={s.videoCamera}><img src={cameraIcon} alt={'Video'}/></picture>}
       </div>
       <PostsModal visible={isModalOpen} post={post} onClose={closeModal}/>
     </>

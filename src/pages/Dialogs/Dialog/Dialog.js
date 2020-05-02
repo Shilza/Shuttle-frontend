@@ -1,12 +1,15 @@
 import React from "react"
 import PropTypes from "prop-types"
 import {Link} from "react-router-dom"
-import moment from 'moment'
+import dayjs from 'dayjs';
+import relativeTime from "dayjs/plugin/relativeTime";
 
 import DefaultAvatar from "components/DefaultAvatar"
 import Typing from "components/Typing";
 
-import styles from './dialog.module.css';
+import s from './dialog.module.css';
+
+dayjs.extend(relativeTime);
 
 
 const Dialog = ({ownerId, username, avatar, text, read, myId, createdAt, isTyping}) => {
@@ -17,21 +20,21 @@ const Dialog = ({ownerId, username, avatar, text, read, myId, createdAt, isTypin
   const post = matches && matches.length >= 2 && matches[1] === window.location.host && 'Post';
 
   return (
-    <div className={!read && ownerId !== myId ? styles.unreadContainer : styles.container}>
-      <Link to={`/${username}`} className={styles.avatar}>
+    <div className={!read && ownerId !== myId ? s.unreadContainer : s.container}>
+      <Link to={`/${username}`} className={s.avatar}>
         {
           avatar ? <img src={avatar} alt={'avatar'} /> : <DefaultAvatar fontSize={'30px'} />
         }
       </Link>
-      <Link to={`/u/messages/${username}`} className={styles.infoContainer}>
-        <div className={styles.infoHeader}>
-          <span className={styles.username}>{username}</span>
-          <time dateTime={createdAt}>{moment(new Date(createdAt), "YYYYMMDD").fromNow()}</time>
+      <Link to={`/u/messages/${username}`} className={s.infoContainer}>
+        <div className={s.infoHeader}>
+          <span className={s.username}>{username}</span>
+          <time className={s.lastMessageTime} dateTime={createdAt}>{dayjs(createdAt).fromNow()}</time>
         </div>
         {
           isTyping
             ? <Typing/>
-            : <div className={!read && ownerId === myId ? styles.myMessageIsUnread : styles.text}>{post || image || text}</div>
+            : <div className={!read && ownerId === myId ? s.myMessageIsUnread : s.text}>{post || image || text}</div>
         }
       </Link>
     </div>

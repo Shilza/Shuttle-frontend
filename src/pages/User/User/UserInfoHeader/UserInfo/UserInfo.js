@@ -2,6 +2,7 @@ import React from "react";
 import PropTypes from 'prop-types';
 import {connect} from "react-redux";
 import {useModal} from 'hooks';
+import {shortifyNumber} from 'utils';
 
 import {Followers} from "./Followers";
 import {Follows} from "./Follows";
@@ -31,8 +32,8 @@ const UserInfo = ({user}) => {
         <>
             <ul className={styles.mainContainer}>
                 <PostsCount postsCount={posts_count}/>
-                <FollowersButton followersCount={followers_count} onClickFollowers={openFollowersModal}/>
-                <FollowsButton followsCount={follows_count} onClickFollows={openFollowsModal}/>
+                <FollowersButton followersCount={shortifyNumber(followers_count)} onClickFollowers={openFollowersModal}/>
+                <FollowsButton followsCount={shortifyNumber(follows_count)} onClickFollows={openFollowsModal}/>
             </ul>
             <Follows
                 isFollowsModal={isFollowsModalOpen}

@@ -4,41 +4,43 @@ import {Link} from "react-router-dom";
 import {connect} from "react-redux";
 
 import {IconButton} from "ui";
-import {isMobile} from "utils";
+import {isMobile, shortifyNumber} from "utils";
 import logoIcon from 'images/nLogo.png';
 import planeIcon from 'images/plane.svg';
 
 import Search from "./Search";
 import DefaultAvatar from "../DefaultAvatar";
 
-import styles from './header.module.css';
+import s from './header.module.css';
+
+const messagesIconProps = {
+    icon: planeIcon,
+    width: 24,
+    height: 24
+};
 
 const Header = ({username, avatar, countOfUnreadMessages}) => (
-  <div className={styles.header}>
-    <Link to='/' className={styles.logo}>
+  <div className={s.header}>
+    <Link to='/' className={s.logo}>
       <img src={logoIcon} alt={'Shuttle logo'}/>
     </Link>
     <Search/>
-    <div className={styles.rightContainer}>
-      <Link to={'/u/messages'} className={styles.messagesLink} data-countofunreadmessages={countOfUnreadMessages}>
+    <div className={s.rightContainer}>
+      <Link to={'/u/messages'} className={s.messagesLink} data-countofunreadmessages={countOfUnreadMessages}>
         <IconButton
-          iconProps={{
-            icon: planeIcon,
-            width: 24,
-            height: 24
-          }}
+          iconProps={messagesIconProps}
           ariaLabel='Open messages'
           title='Messages'
-          className={styles.messagesIcon}
+          className={s.messagesIcon}
         />
       </Link>
       {
         !isMobile() &&
-        <Link to={'/' + username} className={styles.username}>
+        <Link to={'/' + username} className={s.username}>
           {
             avatar
-              ? <img src={avatar} alt='avatar' className={styles.avatar}/>
-              : <div className={styles.avatar}><DefaultAvatar fontSize={'16px'}/></div>
+              ? <img src={avatar} alt='avatar' className={s.avatar}/>
+              : <div className={s.avatar}><DefaultAvatar fontSize={'16px'}/></div>
           }
         </Link>
       }
@@ -55,7 +57,7 @@ Header.propTypes = {
 const mapStateToProps = state => ({
   username: state.auth.user.username,
   avatar: state.auth.user.avatar,
-  countOfUnreadMessages: state.auth.user.unreadDialogs && state.auth.user.unreadDialogs.length,
+  countOfUnreadMessages: shortifyNumber(state?.auth?.user?.unreadDialogs?.length),
 });
 
 export default connect(mapStateToProps)(Header);

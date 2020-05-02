@@ -1,7 +1,7 @@
 
 .container {
   display: flex;
-  margin-top: 10px;
+  margin-top: 5px;
   padding: 10px 15px;
   transition-duration: 300ms;
 }
@@ -38,6 +38,11 @@
 .infoHeader {
   display: flex;
   justify-content: space-between;
+}
+
+.lastMessageTime {
+  font-size: 0.7rem;
+  color: #949494;
 }
 
 .username {

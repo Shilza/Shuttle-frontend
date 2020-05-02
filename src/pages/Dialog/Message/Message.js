@@ -1,6 +1,6 @@
 import React, {useCallback, useState} from "react"
 import PropTypes from "prop-types"
-import moment from "moment";
+import dayjs from 'dayjs';
 
 import CLinkify from 'components/CLinkify'
 import {OptionsModal} from 'ui';
@@ -9,7 +9,7 @@ import Post from "./Post";
 import Images from "./Images";
 import SingleImage from "./Images/SingleImage";
 
-import styles from "./message.module.css";
+import s from "./message.module.css";
 
 
 const Message = ({id, post, images, text, my, read, time, deleteMsg}) => {
@@ -30,15 +30,15 @@ const Message = ({id, post, images, text, my, read, time, deleteMsg}) => {
 
   return (
     <>
-      <div className={my ? styles.myWrapper : styles.wrapper} onClick={openModal}>
+      <div className={my ? s.myWrapper : s.wrapper} onClick={openModal}>
         {
           post
             ? <Post post={post} my={my} postCode={text.split('/')[4]}/>
-            : <div className={styles.container}>
+            : <div className={s.container}>
               {
                 text.length > 0 || (images && images.length > 1) ?
-                  <div className={my ? styles.myText : styles.text}>
-                    {my && !read && <div className={styles.unreadBadge}/>}
+                  <div className={my ? s.myText : s.text}>
+                    {my && !read && <div className={s.unreadBadge}/>}
                     <CLinkify>{text}</CLinkify>
                     <Images images={images}/>
                   </div>
@@ -47,11 +47,11 @@ const Message = ({id, post, images, text, my, read, time, deleteMsg}) => {
               }
             </div>
         }
-        <time className={my ? styles.myTime : styles.time}>{moment(time).format('HH:mm')}</time>
+        <time className={my ? s.myTime : s.time}>{dayjs(time).format('HH:mm')}</time>
       </div>
-      <OptionsModal visible={modalVisible && moment().diff(time, 'hours') <= 24} onClose={closeModal}>
+      <OptionsModal visible={modalVisible && dayjs().diff(time, 'hours') <= 24} onClose={closeModal}>
         {
-          moment().diff(time, 'hours') <= 24 &&
+          dayjs().diff(time, 'hours') <= 24 &&
           <li onClick={deleteMessage}>Delete</li>
         }
         <li onClick={closeModal}>Cancel</li>

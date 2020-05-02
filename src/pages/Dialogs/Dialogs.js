@@ -3,6 +3,7 @@ import PropTypes from "prop-types"
 import {connect} from "react-redux"
 
 import MessagesExplainingLabel from "components/ExplainingLabels/MessagesLabel/MessagesExplainingLabel";
+import Loader from "components/Paginator/Loader";
 import {useDialogs} from "hooks";
 import {isMobile} from "utils";
 
@@ -10,8 +11,7 @@ import ws, {types as WsTypes} from "../../Ws";
 
 import DialogsList from "./DialogsList";
 
-import styles from './dialogs.module.css';
-
+import s from './dialogs.module.css';
 
 
 const Dialogs = ({myId}) => {
@@ -57,10 +57,11 @@ const Dialogs = ({myId}) => {
   }, [addMessage, readAllMessages, setIsTyping, topicName]);
 
   return (
-    <div className={isMobile() ? styles.mobileContainer : styles.container}>
+    <div className={isMobile() ? s.mobileContainer : s.container}>
+      {!firstLoading && <Loader center/>}
       {
         firstLoading && defaultDialogs.length === 0 ?
-          <div className={styles.labelContainer}>
+          <div className={s.labelContainer}>
             <MessagesExplainingLabel/>
           </div>
           :

@@ -10,38 +10,37 @@ import StartMessagingLabel from "components/ExplainingLabels/StartMessagingLabel
 import Message from "../Message"
 import Slider from "./Slider"
 
-import styles from "./messagesList.module.css"
+import s from "./messagesList.module.css"
 
+const getMessageDate = (created_at, lastMessageRef) => {
+  let text;
+  if (lastMessageRef.current) {
+    let momentLst = moment(lastMessageRef.current);
+    let momentCur = moment(created_at);
+
+    if (momentLst.format("D MMMM YYYY") !== momentCur.format("D MMMM YYYY")) {
+      if (momentLst.year() === momentCur.year()) {
+        if (momentCur.format("D MMMM") === moment().format("D MMMM"))
+          text = "today";
+        else
+          text = momentCur.format("D MMMM");
+      } else
+        text = momentCur.format("D MMMM YYYY");
+    }
+  } else {
+    if (moment(created_at).format("D MMMM") === moment().format("D MMMM"))
+      text = "today";
+    else
+      text = moment(created_at).format("D MMMM")
+  }
+  lastMessageRef.current = created_at;
+
+  return text && <div className={s.date}>{text}</div>;
+};
 
 const MessagesList = ({messages, getScrollParent, myId, getMessages, deleteMsg, isFirstLoading}) => {
 
   let lastMessage = useRef(null);
-
-  const messageDate = (created_at) => {
-    let text;
-    if (lastMessage.current) {
-      let momentLst = moment(lastMessage.current);
-      let momentCur = moment(created_at);
-
-      if (momentLst.format("D MMMM YYYY") !== momentCur.format("D MMMM YYYY")) {
-        if (momentLst.year() === momentCur.year()) {
-          if (momentCur.format("D MMMM") === moment().format("D MMMM"))
-            text = "today";
-          else
-            text = momentCur.format("D MMMM");
-        } else
-          text = momentCur.format("D MMMM YYYY");
-      }
-    } else {
-      if (moment(created_at).format("D MMMM") === moment().format("D MMMM"))
-        text = "today";
-      else
-      text = moment(created_at).format("D MMMM")
-    }
-    lastMessage.current = created_at;
-
-    return text && <div className={styles.date}>{text}</div>;
-  };
 
   return (
     <TopPagination
@@ -49,21 +48,21 @@ const MessagesList = ({messages, getScrollParent, myId, getMessages, deleteMsg, 
       loader={<Loader/>}
       withScrollHandler
       getScrollParent={getScrollParent}
-      className={styles.container}
+      className={s.container}
       toBottom
     >
       <Slider>
-        <div className={isMobile() ? styles.mobileMessages : styles.messages}>
-          <div className={styles.absoluteWrapper}>
+        <div className={isMobile() ? s.mobileMessages : s.messages}>
+          <div className={s.absoluteWrapper}>
             {
               !isFirstLoading && messages.length === 0 ?
-                <div className={styles.explainingContainer}>
+                <div className={s.explainingContainer}>
                   <StartMessagingLabel/>
                 </div>
                 :
                 messages.map((message) => (
                     <>
-                      {messageDate(message.created_at)}
+                      {getMessageDate(message.created_at, lastMessage)}
                       <Message
                         key={message.id}
                         id={message.id}

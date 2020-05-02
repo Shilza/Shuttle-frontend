@@ -5,7 +5,7 @@ describe('Authentication', () => {
     });
 
     it('should display "User does not exists"', () => {
-        cy.getByDataTestId('input_username').type('testtest');
+        cy.getByDataTestId('input_username').type('testtesttest');
         cy.getByDataTestId('input_password').type('123123123');
         cy.getByDataTestId('submit_button').click();
 

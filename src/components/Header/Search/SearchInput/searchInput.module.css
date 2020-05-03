@@ -23,13 +23,13 @@
     cursor: text;
 }
 
-.searchBox input[type=text]:hover:focus::placeholder {
+.searchBox input[type=text]:focus::placeholder {
     visibility: visible;
 }
 
 .searchBox input[type=text]:focus {
     width: 200px;
-    padding: 0 10px;
+    padding: 0 12px;
     outline: none;
     background: none;
 }

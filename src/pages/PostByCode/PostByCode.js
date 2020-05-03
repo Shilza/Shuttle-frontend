@@ -19,7 +19,7 @@ const PostByCode = ({dispatch, match, currentPost}) => {
 
   return (
     <div className={isMobile() ? styles.mobileContainer : styles.container}>
-      {isLoading && <Loader center/>}
+      {isLoading && <Loader center label='Fetch post'/>}
       {
         error
           ? <div>{error?.response?.data?.message}</div>

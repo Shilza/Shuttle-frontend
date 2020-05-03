@@ -1,22 +1,29 @@
-import React, {useCallback} from "react";
-import {isMobile} from "is-mobile";
-
-import {UsersService} from "services";
-import Paginator from "components/Paginator/Paginator";
-import Body from "./Body";
-import {ListModal, MobileDrawer} from "ui";
+import React, {useCallback, useState} from "react";
 import PropTypes from "prop-types";
 import {connect} from "react-redux";
+
+import {isMobile} from "utils";
+import {UsersService} from "services";
+import {ListModal, MobileDrawer} from "ui";
+import Paginator from "components/Paginator/Paginator";
+import Loader from "components/Paginator/Loader";
+
+import Body from "./Body";
 
 const Followers = ({isFollowersModal, closeFollowersModal, dispatch, user}) => {
 
     const {id, followers_count, canSee} = user;
+    const [isLoading, setIsLoading] = useState(false);
 
     const loadFollowers = useCallback((page) => {
+        setIsLoading(true);
         return UsersService.getFollowers(id, page)
             .then(({data}) => {
                 dispatch.users.addFollowers(data.data);
                 return data;
+            })
+            .finally(() => {
+                setIsLoading(false);
             })
     }, [id, dispatch.users]);
 
@@ -33,7 +40,11 @@ const Followers = ({isFollowersModal, closeFollowersModal, dispatch, user}) => {
                             fetcher={loadFollowers}
                             useWindow={false}
                         >
-                            <Body id={id} closeModal={closeFollowersModal}/>
+                            {
+                                isLoading
+                                ? <Loader/>
+                                : <Body id={id} closeModal={closeFollowersModal}/>
+                            }
                         </Paginator>
                     </MobileDrawer>
                     :

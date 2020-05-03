@@ -71,7 +71,7 @@
 }
 
 .search {
-  padding: 4px 8px;
+  padding: 6px 10px;
   color: var(--text);
   width: 100%;
   transition: 140ms;
@@ -79,6 +79,10 @@
   border: 1px solid var(--accent-second);
   background-color: transparent;
   border-radius: 5px;
+}
+
+.search:focus {
+  border-color: var(--btn-border-active);
 }
 
 .search::placeholder {

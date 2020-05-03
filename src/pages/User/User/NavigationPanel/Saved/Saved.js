@@ -23,7 +23,7 @@ const Saved = ({posts, dispatch}) => {
       .then(() => {
         setIsLoading(false);
       })
-  }, [dispatch.saved, setIsLoading]);
+  }, [dispatch.saved]);
 
   useEffect(() => {
     fetchCompilations(1);

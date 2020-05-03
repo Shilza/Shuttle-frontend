@@ -10,7 +10,7 @@ const Password = ({getFieldDecorator, fieldName='password', validator}) => {
                 rules: [
                     {required: true, message: 'Please input your password!'},
                     {max: 32, message: 'Password must be less than 32 characters!'},
-                    {min: 6, message: 'Password must be at least 6 characters!'},
+                    {min: 8, message: 'Password must be at least 8 characters!'},
                     {validator}
                 ]
             })(

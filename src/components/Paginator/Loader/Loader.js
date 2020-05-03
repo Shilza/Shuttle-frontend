@@ -8,7 +8,7 @@ const style = {
 };
 
 const Loader = ({center = false, label, className}) => (
-  <div className={[styles.loader, className, center ? styles.center : ''].join(' ')}>
+  <div className={[styles.loader, className || '', center ? styles.center : ''].join(' ')}>
     <Icon type={'loading'} style={style}/>
     {label}
   </div>

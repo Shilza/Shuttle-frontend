@@ -1,0 +1,25 @@
+
+.container {
+    margin: 20px 0 15px 0;
+}
+
+.title {
+    padding-left: 5%;
+    text-transform: uppercase;
+    margin-bottom: 0;
+    font-size: 0.95rem;
+    cursor: pointer;
+    transition: 100ms;
+    color: var(--heading);
+}
+
+.title:hover {
+    text-decoration: underline;
+}
+
+.storiesList {
+    width: 100%;
+    padding: 35px 3% 50px 3%;
+    display: flex;
+    overflow-x: auto;
+}

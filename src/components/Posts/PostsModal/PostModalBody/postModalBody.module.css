@@ -11,6 +11,7 @@
   composes: wrapper;
   padding-top: 0;
   margin-bottom: 0;
+  width: 100%;
 }
 
 @media (max-width: 810px) {
@@ -39,4 +40,9 @@
     height: auto;
     min-width: 310px;
   }
+}
+
+.mobileContainer {
+  composes: container;
+  width: 100%;
 }

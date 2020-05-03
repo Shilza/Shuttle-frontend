@@ -1,23 +1,30 @@
-import React, {useCallback} from "react";
-import {isMobile} from "is-mobile";
-
-import {UsersService} from "services";
-import Paginator from "components/Paginator";
-import Body from "./Body";
-import {ListModal, MobileDrawer} from "ui";
+import React, {useCallback, useState} from "react";
 import PropTypes from "prop-types";
 import {connect} from "react-redux";
+
+import {isMobile} from "utils";
+import {UsersService} from "services";
+import {ListModal, MobileDrawer} from "ui";
+import Paginator from "components/Paginator";
+import Loader from "components/Paginator/Loader";
+
+import Body from "./Body";
 
 const Follows = ({isFollowsModal, closeFollowsModal, dispatch, user}) => {
 
     const {id, follows_count, canSee} = user;
+    const [isLoading, setIsLoading] = useState(false);
 
     const loadFollows = useCallback((page) => {
+        setIsLoading(true);
         return UsersService.getFollows(id, page)
             .then(({data}) => {
                 dispatch.users.addFollows(data.data);
                 return data;
-            });
+            })
+            .finally(() => {
+                setIsLoading(false);
+            })
     }, [id, dispatch.users]);
 
     return (
@@ -33,7 +40,11 @@ const Follows = ({isFollowsModal, closeFollowsModal, dispatch, user}) => {
                             fetcher={loadFollows}
                             useWindow={false}
                         >
-                            <Body id={id} closeModal={closeFollowsModal}/>
+                            {
+                                isLoading
+                                    ? <Loader/>
+                                    : <Body id={id} closeModal={closeFollowsModal}/>
+                            }
                         </Paginator>
                     </MobileDrawer>
                     :

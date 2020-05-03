@@ -1,0 +1,9 @@
+
+.mobileDrawerContainer {
+    padding: 0;
+    height: calc(100% - 45px);
+}
+
+.mobileDrawerTitle {
+    height: 45px;
+}

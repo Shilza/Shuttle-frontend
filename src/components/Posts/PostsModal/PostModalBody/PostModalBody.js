@@ -5,7 +5,7 @@ import {isMobile} from "utils";
 import PostMedia from "components/PostMedia";
 import PostControl from "../PostsControl";
 
-import styles from './postModalBody.module.css';
+import s from './postModalBody.module.css';
 
 const PostModalBody = ({post, closeModal, needReplaceLocation = true}) => {
 
@@ -22,8 +22,8 @@ const PostModalBody = ({post, closeModal, needReplaceLocation = true}) => {
     style = {flexDirection: 'column', height: 'auto'};
 
   return (
-    <section className={isMobile() ? styles.mobileWrapper : styles.wrapper}>
-      <div className={styles.container} style={style}>
+    <section className={isMobile() ? s.mobileWrapper : s.wrapper}>
+      <div className={isMobile() ? s.mobileContainer : s.container} style={style}>
         <PostMedia
           media={post.src}
           postId={post.id}

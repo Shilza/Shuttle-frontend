@@ -34,7 +34,7 @@
 }
 
 .body {
-  padding: 8px 14px;
+  padding: 10px 14px;
   max-height: calc(95vh - 40px);
   overflow-y: auto;
 }

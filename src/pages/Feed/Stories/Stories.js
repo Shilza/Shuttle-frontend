@@ -10,7 +10,7 @@ import s from './stories.module.css';
 const stories = [
     {
         id: 1,
-        avatar: 'https://lh3.googleusercontent.com/proxy/k9JgOkx2d2kxUuIgsjgolTTQ3-gk7dpki-WiCXvIX4_I7wmandK2vpb0z1D3wHZRTll8Bx_qRMtNM4gZxXzW8jrbasA_ThA_ARBHP_o2BOWFHqWZ5ANaL5keqLqt3UFKr8Yu',
+        avatar: 'https://wallpapercart.com/wp-content/uploads/2019/10/Women-Anastasiya-Scheglova-Models-Russia-Woman-Model-Girl-Russian-Blonde-Face-Green-Eyes-HD-Wallpaper-Background-Image.jpg',
         username: 'jenifer',
         preview: 'https://s6.weddbook.com/t4/2/6/2/2625972/wonderful-places.jpg'
     },

@@ -8,6 +8,7 @@
   padding: 6px 12px;
   border-radius: 6px;
   margin: 0 15px 15px;
+  transition: 120ms;
 }
 
 .searchContainer input {
@@ -19,6 +20,10 @@
   transition: 140ms;
   outline: none;
   background-color: transparent;
+}
+
+.searchContainer:hover, .searchContainer:focus-within {
+  border-color: var(--btn-border-active);
 }
 
 .searchContainer input::placeholder {

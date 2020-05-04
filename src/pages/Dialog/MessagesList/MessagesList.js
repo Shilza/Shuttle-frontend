@@ -72,6 +72,7 @@ const MessagesList = ({messages, getScrollParent, myId, getMessages, deleteMsg, 
                         time={message.created_at}
                         images={message.images}
                         post={message.post}
+                        profile={message.profile}
                         deleteMsg={deleteMsg}
                       />
                     </>

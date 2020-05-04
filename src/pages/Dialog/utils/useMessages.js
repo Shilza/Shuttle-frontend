@@ -27,9 +27,13 @@ const getPost = async (text) => {
 
 export const getUsername = (text) => {
     let username = null;
-    const usernameMatch = text.match(/https?:\/\/(?:(?:localhost:3000)|(?:shuttle\.rest))\/(.+?)(?:\s|$)/);
-    if (usernameMatch?.length >= 1) {
-        username = !usernameMatch[1].includes('/') && usernameMatch[1];
+    if(text) {
+        const usernameMatch = text.match(/https?:\/\/(?:(?:localhost:3000)|(?:shuttle\.rest))\/(.+?)(?:\s|$)/);
+        if (usernameMatch?.length >= 1) {
+            const tempUsername = !usernameMatch[1].includes('/') && usernameMatch[1];
+            if (text.startsWith('http') && text.endsWith(tempUsername))
+                username = tempUsername;
+        }
     }
     return username;
 };

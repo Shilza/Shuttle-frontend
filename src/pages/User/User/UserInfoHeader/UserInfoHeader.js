@@ -9,7 +9,7 @@ import styles from './userInfoHeader.module.css';
 const UserInfoHeader = ({user}) => (
   <div className={styles.mainContainer}>
     <Avatar avatar={user.avatar}/>
-    <div className={styles.directionInfoContainer}>
+    <div className={styles.dirгectionInfoContainer}>
       <Direction username={user.username}/>
       <UserInfo/>
       <span>{user.bio}</span>

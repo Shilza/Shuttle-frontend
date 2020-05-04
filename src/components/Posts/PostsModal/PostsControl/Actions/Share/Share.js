@@ -7,46 +7,49 @@ import {IconButton, SimpleModal} from 'ui';
 import planeIcon from "images/plane.svg";
 
 import Body from "./Body";
-import styles from './share.module.css';
+import s from './share.module.css';
 
 const Share = React.memo(({src, className}) => {
 
-  const [isVisible, setIsVisible] = useState(false);
+    const [isVisible, setIsVisible] = useState(false);
 
-  const open = () => {
-    setIsVisible(true);
-  };
+    const open = () => {
+        setIsVisible(true);
+    };
 
-  const close = () => {
-    setIsVisible(false);
-  };
+    const close = () => {
+        setIsVisible(false);
+    };
 
-  return (
-    <>
-      <IconButton
-        iconProps={{title: 'Share', icon: planeIcon, className: styles.icon}}
-        ariaLabel='Share post'
-        title='Share post'
-        className={`${styles.button} ${className}`} onClick={open}
-      />
-      {
-        isMobile()
-          ? <Drawer onClose={close} visible={isVisible} placement='bottom' height='90%' className={styles.drawer}>
-            <Body src={src} close={close}/>
-          </Drawer>
-          : <SimpleModal visible={isVisible} onCancel={close}>
-            <div className={styles.bodyWrapper}>
-              <Body src={src} close={close}/>
-            </div>
-          </SimpleModal>
-      }
-    </>
-  )
+    return (
+        <>
+            <IconButton
+                iconProps={{title: 'Share', icon: planeIcon, className: s.icon}}
+                ariaLabel='Share post'
+                title='Share post'
+                className={`${s.button} ${className}`} onClick={open}
+            />
+            {
+                isMobile()
+                    ?
+                    <Drawer onClose={close} visible={isVisible} placement='bottom' height='90%'
+                            className={s.drawer}>
+                        <Body src={src} close={close}/>
+                    </Drawer>
+                    :
+                    <SimpleModal visible={isVisible} onCancel={close}>
+                        <div className={s.bodyWrapper}>
+                            <Body src={src} close={close}/>
+                        </div>
+                    </SimpleModal>
+            }
+        </>
+    )
 });
 
 Share.propTypes = {
-  src: PropTypes.string.isRequired,
-  className: PropTypes.string
+    src: PropTypes.string.isRequired,
+    className: PropTypes.string
 };
 
 export default Share;

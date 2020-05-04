@@ -23,7 +23,7 @@ const stories = [
     {
         id: 3,
         avatar: 'https://i.pinimg.com/originals/97/e4/2a/97e42a82fc7911961d3ca55f54d1372c.jpg',
-        username: 'rebecca',
+        username: 'paul',
         preview: 'https://m.buro247.ru/images/senina/ADID-Part.jpg'
     },
     {

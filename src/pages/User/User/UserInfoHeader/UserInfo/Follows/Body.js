@@ -3,14 +3,14 @@ import PropTypes from 'prop-types';
 import {connect} from "react-redux";
 
 import UserFriendshipCard from "../UserFriendshipCard";
+import SearchInput from "components/SearchInput";
 import {searchFollows} from "services/user";
 
-import styles from '../friendships.module.css';
+import s from '../friendships.module.css';
 
 const Body = ({closeModal, me, id, dispatch, follows}) => {
 
-  const search = event => {
-    let username = event.target.value;
+  const search = (username) => {
     if (username.length <= 12)
       searchFollows(id, username)
         .then(({data}) => {
@@ -24,8 +24,13 @@ const Body = ({closeModal, me, id, dispatch, follows}) => {
   };
 
   return (
-      <div className={styles.friendshipsContainer}>
-        <input className={styles.search} maxLength={12} onChange={search} placeholder={'Username'}/>
+      <div className={s.friendshipsContainer}>
+          <SearchInput
+              search={search}
+              placeholder={'Username'}
+              className={s.search}
+              maxLength={12}
+          />
         <ul>
           {
             follows.map(user =>

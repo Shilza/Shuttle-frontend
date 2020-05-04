@@ -21,7 +21,7 @@ const SearchInput = React.memo(({search, className, ...props}) => {
   return (
     <div className={`${styles.searchContainer} ${className}`}>
       <Icon type='search'/>
-      <input ref={inputRef} placeholder='Search' maxLength='32' onChange={onInputChange} {...props}/>
+      <input ref={inputRef} placeholder={'Search' || props.placeholder} maxLength={32 || props.maxLength} onChange={onInputChange} {...props}/>
       {
         showClose && <Icon type={'close'} title='Clear' onClick={clearInput}/>
       }

@@ -22,9 +22,11 @@ const PostsModal = ({visible, onClose, post}) => {
                         visible={post && visible}
                         onClose={closeModal}
                         title={post.owner}
+                        className={s.mobileDrawer}
                         containerClassName={s.mobileDrawerContainer}
                         titleClassName={s.mobileDrawerTitle}
                         height='calc(100vh - 50px)'
+                        zIndex={100}
                     >
                         <PostModalBody post={post} closeModal={closeModal}/>
                     </MobileDrawer>

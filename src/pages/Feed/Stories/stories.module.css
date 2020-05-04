@@ -23,3 +23,8 @@
     display: flex;
     overflow-x: auto;
 }
+
+.storiesList::after {
+    content: "";
+    flex: 0 0 3%;
+}

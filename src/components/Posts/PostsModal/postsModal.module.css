@@ -1,7 +1,12 @@
 
+.mobileDrawer {
+    height: calc(100% - 45px);
+}
+
 .mobileDrawerContainer {
     padding: 0;
-    height: calc(100% - 45px);
+    height: calc(100vh - 140px);
+    overflow-y: auto;
 }
 
 .mobileDrawerTitle {

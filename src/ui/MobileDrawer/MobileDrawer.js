@@ -1,19 +1,19 @@
 import React from "react";
 import PropTypes from "prop-types";
 import {Drawer} from "react-pretty-drawer";
+import {useSwipeable} from "react-swipeable";
 import {Title} from "./Title";
 import s from "./mobileDrawer.module.css";
-import {useSwipeable} from "react-swipeable";
 
 const swipeableConfig = {
-    delta: window.screen.height / 100 * 50,
+    delta: window.screen.height / 100 * 40,
 };
 
 export const MobileDrawer = React.memo(({
                                             children, title, visible, className, containerClassName, placement, height,
                                             header,
                                             ...props
-}) => {
+                                        }) => {
 
     const handleSwipable = useSwipeable({onSwipedDown: props.onClose, ...swipeableConfig});
 

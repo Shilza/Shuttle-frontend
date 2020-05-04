@@ -6,6 +6,7 @@ import relativeTime from "dayjs/plugin/relativeTime";
 
 import DefaultAvatar from "components/DefaultAvatar"
 import Typing from "components/Typing";
+import {getPostCode, getUsername} from "../../Dialog/utils/useMessages";
 
 import s from './dialog.module.css';
 
@@ -16,8 +17,10 @@ const Dialog = ({ownerId, username, avatar, text, read, myId, createdAt, isTypin
   const media = text.match(/https?:\/\/[^"' ]+\.(?:png|jpg|jpeg|gif|mp4).*?(?=( |$))/g, '');
 
   const image = media && media.length > 0 && 'Image';
-  const matches = text.match(/^https?:\/\/([^/?#]+)(?:[/?#]|$)/i);
-  const post = matches && matches.length >= 2 && matches[1] === window.location.host && 'Post';
+  const postCode = getPostCode(text);
+  const post = postCode?.length === 36 && 'Post';
+  const usernameFromText = getUsername(text);
+  const profile = usernameFromText && `@${usernameFromText}`;
 
   return (
     <div className={!read && ownerId !== myId ? s.unreadContainer : s.container}>
@@ -34,7 +37,7 @@ const Dialog = ({ownerId, username, avatar, text, read, myId, createdAt, isTypin
         {
           isTyping
             ? <Typing/>
-            : <div className={!read && ownerId === myId ? s.myMessageIsUnread : s.text}>{post || image || text}</div>
+            : <div className={!read && ownerId === myId ? s.myMessageIsUnread : s.text}>{post || image || profile || text}</div>
         }
       </Link>
     </div>

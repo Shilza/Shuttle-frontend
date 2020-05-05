@@ -1,4 +1,4 @@
-import React, {useCallback, useEffect, useMemo, useState} from "react";
+import React, {useCallback, useEffect, useState} from "react";
 import PropTypes from 'prop-types';
 import {connect} from "react-redux";
 
@@ -15,7 +15,7 @@ import styles from './body.module.css';
 
 const prepare = (users) => users.map(user => user.user ? user.user : user);
 
-const Body = ({src, myId, close, dispatch}) => {
+const Body = ({src, myId, entityMessage, close, dispatch}) => {
 
   const [message, setMessage] = useState('');
   const [fetcher, setFetcher] = useState(null);
@@ -25,18 +25,13 @@ const Body = ({src, myId, close, dispatch}) => {
     fetchDialogs();
   }, [fetchDialogs]);
 
-  const postCode = useMemo(() => {
-    const srcSplitted = src.split('/');
-    return srcSplitted[srcSplitted.length - 1].split('.')[0]
-  }, [src]);
-
   const send = (id) => {
     const wsThread = ws.getSubscription(`dialogs:${myId}`);
     if(wsThread) {
       wsThread.emit('message', {
         type: WsTypes.MESSAGE,
         receiverId: id,
-        message: `${window.location.origin}/p/${postCode}`
+        message: entityMessage
       });
       if (message.length > 0 && message.length < 1000)
         wsThread.emit('message', {
@@ -68,7 +63,6 @@ const Body = ({src, myId, close, dispatch}) => {
       <SearchInput search={search} className={styles.search}/>
       <ListOfUsers
         users={prepare(dialogs)}
-        postCode={postCode}
         fetcher={fetcher}
         send={send}
       />
@@ -77,7 +71,7 @@ const Body = ({src, myId, close, dispatch}) => {
 };
 
 Body.propTypes = {
-  src: PropTypes.string.isRequired,
+  src: PropTypes.string,
   myId: PropTypes.number,
   close: PropTypes.func.isRequired
 };

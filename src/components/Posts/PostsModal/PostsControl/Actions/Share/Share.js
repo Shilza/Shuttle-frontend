@@ -1,17 +1,25 @@
-import React, {useState} from "react";
+import React, {useMemo, useState} from "react";
 import PropTypes from 'prop-types';
-import {Drawer} from "react-pretty-drawer";
 
-import {isMobile} from "utils";
-import {IconButton, SimpleModal} from 'ui';
+import {IconButton} from 'ui';
 import planeIcon from "images/plane.svg";
 
-import Body from "./Body";
+import {ShareModal} from "./ShareModal";
+
 import s from './share.module.css';
+
 
 const Share = React.memo(({src, className}) => {
 
     const [isVisible, setIsVisible] = useState(false);
+
+    const postCode = useMemo(() => {
+        if(src) {
+            const srcSplitted = src.split('/');
+            return srcSplitted[srcSplitted.length - 1].split('.')[0];
+        }
+        return '';
+    }, [src]);
 
     const open = () => {
         setIsVisible(true);
@@ -29,20 +37,12 @@ const Share = React.memo(({src, className}) => {
                 title='Share post'
                 className={`${s.button} ${className}`} onClick={open}
             />
-            {
-                isMobile()
-                    ?
-                    <Drawer onClose={close} visible={isVisible} placement='bottom' height='90%'
-                            className={s.drawer}>
-                        <Body src={src} close={close}/>
-                    </Drawer>
-                    :
-                    <SimpleModal visible={isVisible} onCancel={close}>
-                        <div className={s.bodyWrapper}>
-                            <Body src={src} close={close}/>
-                        </div>
-                    </SimpleModal>
-            }
+            <ShareModal
+                isVisible={isVisible}
+                src={src}
+                entityMessage={`${window.location.origin}/p/${postCode}`}
+                onClose={close}
+            />
         </>
     )
 });

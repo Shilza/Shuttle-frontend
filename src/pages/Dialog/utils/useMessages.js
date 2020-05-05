@@ -46,8 +46,6 @@ const getProfile = async (text) => {
             await UsersService.getUser(username)
                 .then(async ({data}) => {
                     profile = data;
-                    const postsData = await PostsService.getPosts(data.id)(1);
-                    profile.posts = postsData.data.data;
                 })
                 .catch(err => {
                     profile = {error: (err.response && err.response.data && err.response.data.message) || err.message}

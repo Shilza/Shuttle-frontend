@@ -22,11 +22,6 @@ const Profile = ({profile, my}) => {
                 {
                     profile.error && <div className={s.media} data-error={profile.error}/>
                 }
-                {/*<div className={s.pics}>*/}
-                {/*    {*/}
-                {/*        profile.posts.map((post) => <img src={post.src} className={s.media} alt='post'/>)*/}
-                {/*    }*/}
-                {/*</div>*/}
             </Link>
         </div>
     );

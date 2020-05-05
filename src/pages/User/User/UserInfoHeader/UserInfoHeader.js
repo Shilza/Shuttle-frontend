@@ -1,15 +1,17 @@
 import React from "react";
 import PropTypes from 'prop-types';
 import {connect} from "react-redux";
+
 import Avatar from "./Avatar/Avatar";
-import Direction from "../Direction/Direction";
+import Direction from "../Direction";
 import UserInfo from "./UserInfo/UserInfo";
-import styles from './userInfoHeader.module.css';
+
+import s from './userInfoHeader.module.css';
 
 const UserInfoHeader = ({user}) => (
-  <div className={styles.mainContainer}>
+  <div className={s.mainContainer}>
     <Avatar avatar={user.avatar}/>
-    <div className={styles.dirгectionInfoContainer}>
+    <div className={s.directionInfoContainer}>
       <Direction username={user.username}/>
       <UserInfo/>
       <span>{user.bio}</span>

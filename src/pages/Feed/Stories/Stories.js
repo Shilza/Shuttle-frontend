@@ -44,12 +44,12 @@ const stories = [
         username: 'tiempo',
         preview: 'https://scontent-arn2-2.cdninstagram.com/v/t51.2885-15/sh0.08/e35/s640x640/53882623_321331465234868_8166018443124263539_n.jpg?_nc_ht=scontent-arn2-2.cdninstagram.com&_nc_cat=108&_nc_ohc=6oNyGycSh0YAX9AT4Mh&oh=7c6cd0aecaca0d0c6dfa03467d4d46c8&oe=5ED9D64A'
     },
-    {
-        id: 7,
-        avatar: 'https://scontent-arn2-2.cdninstagram.com/v/t51.2885-19/s150x150/67885529_510401589509264_3979583281904484352_n.jpg?_nc_ht=scontent-arn2-2.cdninstagram.com&_nc_ohc=jxlga0Wl8kkAX-njio7&oh=bd429cb4aaa0a2d25cfa73aa98121e72&oe=5ED7F3F6',
-        username: 'kpss',
-        preview: 'https://i1.sndcdn.com/artworks-000338902536-3lfgjj-t500x500.jpg'
-    }
+    // {
+    //     id: 7,
+    //     avatar: 'https://scontent-arn2-2.cdninstagram.com/v/t51.2885-19/s150x150/67885529_510401589509264_3979583281904484352_n.jpg?_nc_ht=scontent-arn2-2.cdninstagram.com&_nc_ohc=jxlga0Wl8kkAX-njio7&oh=bd429cb4aaa0a2d25cfa73aa98121e72&oe=5ED7F3F6',
+    //     username: 'kpss',
+    //     preview: 'https://i1.sndcdn.com/artworks-000338902536-3lfgjj-t500x500.jpg'
+    // }
 ];
 
 export const Stories = React.memo(() => {

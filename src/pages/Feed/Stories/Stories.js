@@ -38,12 +38,6 @@ const stories = [
         username: 'olivia',
         preview: 'https://i.pinimg.com/originals/f6/87/78/f6877851e81f9e70438679086316fcb7.jpg'
     },
-    {
-        id: 6,
-        avatar: 'https://scontent-arn2-1.cdninstagram.com/v/t51.2885-15/sh0.08/e35/p640x640/54731758_422976725146209_6175135205368057185_n.jpg?_nc_ht=scontent-arn2-1.cdninstagram.com&_nc_cat=109&_nc_ohc=Df-qgr0mWUsAX-M7kR1&oh=293c258d1f36aa95c4b4a397202d22c7&oe=5ED8E94C',
-        username: 'tiempo',
-        preview: 'https://scontent-arn2-2.cdninstagram.com/v/t51.2885-15/sh0.08/e35/s640x640/53882623_321331465234868_8166018443124263539_n.jpg?_nc_ht=scontent-arn2-2.cdninstagram.com&_nc_cat=108&_nc_ohc=6oNyGycSh0YAX9AT4Mh&oh=7c6cd0aecaca0d0c6dfa03467d4d46c8&oe=5ED9D64A'
-    },
     // {
     //     id: 7,
     //     avatar: 'https://scontent-arn2-2.cdninstagram.com/v/t51.2885-19/s150x150/67885529_510401589509264_3979583281904484352_n.jpg?_nc_ht=scontent-arn2-2.cdninstagram.com&_nc_ohc=jxlga0Wl8kkAX-njio7&oh=bd429cb4aaa0a2d25cfa73aa98121e72&oe=5ED7F3F6',

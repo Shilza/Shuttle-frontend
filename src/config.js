@@ -1,6 +1,12 @@
 
+// Флаг, говорит о том, используем глобальный апи или локальный
+// true - запросы летят на apishuttlemedia.herokuapp.com
+// false - на localhost:3333
 const USE_GLOBAL_BY_LOCALHOST = true;
+// Перменная среды окрущения
+// Возможные состояния: production, development, testing
 const REACT_APP_ENV =  process.env.REACT_APP_ENV;
+// Хост, к которому будут направляться все запросы
 let HOST = "apishuttlemedia.herokuapp.com";
 
 const HTTP_PROTOCOL = `http${(REACT_APP_ENV === 'production' || USE_GLOBAL_BY_LOCALHOST) ? 's' : ''}`;

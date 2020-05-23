@@ -38,12 +38,12 @@ const stories = [
         username: 'olivia',
         preview: 'https://i.pinimg.com/originals/f6/87/78/f6877851e81f9e70438679086316fcb7.jpg'
     },
-    {
-        id: 6,
-        avatar: 'https://scontent-arn2-2.cdninstagram.com/v/t51.2885-19/s150x150/67885529_510401589509264_3979583281904484352_n.jpg?_nc_ht=scontent-arn2-2.cdninstagram.com&_nc_ohc=jxlga0Wl8kkAX-njio7&oh=bd429cb4aaa0a2d25cfa73aa98121e72&oe=5ED7F3F6',
-        username: 'kpss',
-        preview: 'https://i1.sndcdn.com/artworks-000338902536-3lfgjj-t500x500.jpg'
-    }
+    // {
+    //     id: 7,
+    //     avatar: 'https://scontent-arn2-2.cdninstagram.com/v/t51.2885-19/s150x150/67885529_510401589509264_3979583281904484352_n.jpg?_nc_ht=scontent-arn2-2.cdninstagram.com&_nc_ohc=jxlga0Wl8kkAX-njio7&oh=bd429cb4aaa0a2d25cfa73aa98121e72&oe=5ED7F3F6',
+    //     username: 'kpss',
+    //     preview: 'https://i1.sndcdn.com/artworks-000338902536-3lfgjj-t500x500.jpg'
+    // }
 ];
 
 export const Stories = React.memo(() => {

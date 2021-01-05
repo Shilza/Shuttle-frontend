@@ -8,7 +8,7 @@
     "@babel/plugin-proposal-export-default-from": "^7.5.2",
     "@rematch/core": "^1.2.0",
     "antd": "^3.25.1",
-    "axios": "^0.19.0",
+    "axios": "^0.21.1",
     "colorthief": "^2.3.0",
     "customize-cra": "^0.8.0",
     "dayjs": "^1.8.24",
